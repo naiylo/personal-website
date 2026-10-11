@@ -2,11 +2,10 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { RevealDirective } from '../../directives/reveal.directive';
 import { PortfolioData } from '../../models/portfolio.model';
-import { PixelSpriteComponent } from '../pixel-sprite/pixel-sprite';
 
 @Component({
   selector: 'app-contact-footer',
-  imports: [PixelSpriteComponent, RevealDirective],
+  imports: [RevealDirective],
   templateUrl: './contact-footer.html',
   styleUrl: './contact-footer.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

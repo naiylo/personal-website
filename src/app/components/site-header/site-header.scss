@@ -8,7 +8,6 @@
   gap: 2rem;
   align-items: center;
   min-height: 88px;
-  border-bottom: 1px solid var(--line);
 }
 
 .brand,
@@ -65,6 +64,5 @@ nav a:hover,
     grid-column: 1 / -1;
     justify-content: space-between;
     padding-block: 0.2rem 1rem;
-    border-top: 1px solid color-mix(in srgb, var(--line), transparent 45%);
   }
 }

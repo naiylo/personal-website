@@ -14,19 +14,14 @@
 }
 
 .headline-wrap {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 160px;
-  gap: 2rem;
-  align-items: center;
-  margin-block: clamp(3.2rem, 7vw, 6.5rem) clamp(3rem, 6vw, 5rem);
+  margin-block: clamp(4rem, 8vw, 8rem) clamp(3.5rem, 7vw, 6rem);
 }
 
 h1 {
+  max-width: 1300px;
   margin: 0;
-  font: 600 clamp(4.2rem, 10.5vw, 10.5rem) / 0.78 var(--font-pixel);
-  letter-spacing: -0.065em;
-  text-transform: uppercase;
+  font: 500 clamp(3.8rem, 8.5vw, 8.6rem) / 0.9 var(--font-sans);
+  letter-spacing: -0.07em;
 }
 
 h1 span {
@@ -37,29 +32,9 @@ h1 span {
 h1 span:nth-child(2) { animation-delay: 90ms; }
 h1 span:nth-child(3) { animation-delay: 180ms; }
 
-.indent {
-  padding-left: clamp(1rem, 9vw, 10rem);
-}
-
 .accent {
   display: inline !important;
   color: var(--yellow);
-}
-
-.sprite-stage {
-  display: grid;
-  justify-items: center;
-  padding: 1.5rem 0 1rem;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.sprite-label {
-  margin-bottom: 0.7rem;
-  color: var(--muted);
-  font: 400 0.58rem/1 var(--font-mono);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
 }
 
 .hero-footer {
@@ -140,7 +115,6 @@ h1 span:nth-child(3) { animation-delay: 180ms; }
 .scroll-cue {
   margin-top: clamp(4rem, 8vw, 7rem);
   padding-block: 1.2rem;
-  border-top: 1px solid var(--line);
 }
 
 .scroll-cue a {
@@ -157,22 +131,6 @@ h1 span:nth-child(3) { animation-delay: 180ms; }
 }
 
 @media (max-width: 900px) {
-  .headline-wrap {
-    grid-template-columns: 1fr;
-  }
-
-  .sprite-stage {
-    position: absolute;
-    right: 0;
-    bottom: -1rem;
-    padding: 0;
-    border: 0;
-    transform: scale(0.75);
-    transform-origin: bottom right;
-  }
-
-  .sprite-label { display: none; }
-
   .hero-footer {
     grid-template-columns: 1fr 1fr;
   }
@@ -193,16 +151,9 @@ h1 span:nth-child(3) { animation-delay: 180ms; }
   }
 
   h1 {
-    font-size: clamp(3rem, 16vw, 5rem);
-    line-height: 0.84;
-  }
-
-  .indent { padding-left: 0.35em; }
-
-  .sprite-stage {
-    right: -1rem;
-    bottom: -4.5rem;
-    transform: scale(0.55);
+    font-size: clamp(3.15rem, 15vw, 4.8rem);
+    line-height: 0.92;
+    letter-spacing: -0.06em;
   }
 
   .hero-footer {

@@ -11,4 +11,5 @@ export class SectionHeadingComponent {
   readonly firstLine = input.required<string>();
   readonly secondLine = input<string>('');
   readonly label = input.required<string>();
+  readonly headingId = input<string>();
 }

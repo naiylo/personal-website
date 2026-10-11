@@ -7,5 +7,14 @@
 }
 
 .projects {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
   margin-top: clamp(3rem, 7vw, 6rem);
+}
+
+@media (max-width: 1000px) {
+  .projects {
+    grid-template-columns: 1fr;
+  }
 }

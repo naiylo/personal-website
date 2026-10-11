@@ -1,5 +1,5 @@
 export type Accent = 'yellow' | 'green' | 'blue';
-export type PreviewKind = 'systems' | 'voxel' | 'research';
+export type PreviewKind = 'thumbnail' | 'llm' | 'rag';
 
 export interface Project {
   readonly number: string;

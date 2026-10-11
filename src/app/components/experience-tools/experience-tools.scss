@@ -9,10 +9,8 @@
 .capabilities {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1px;
+  gap: 1rem;
   margin-top: clamp(3rem, 7vw, 6rem);
-  background: var(--line);
-  border: 1px solid var(--line);
 }
 
 .capabilities article {
@@ -30,8 +28,11 @@ li {
   display: flex;
   gap: 1.1rem;
   padding-block: 1rem;
-  border-bottom: 1px solid var(--line);
   font-size: clamp(1rem, 1.5vw, 1.25rem);
+}
+
+li + li {
+  padding-top: 0.35rem;
 }
 
 li span {
@@ -43,18 +44,14 @@ li span {
   margin-top: clamp(4rem, 7vw, 6rem);
 }
 
-.timeline > .eyebrow {
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--line);
-}
-
 .timeline article {
   display: grid;
   grid-template-columns: 0.28fr 0.72fr 0.7fr;
   gap: 2rem;
   align-items: start;
-  padding-block: 1.8rem;
-  border-bottom: 1px solid var(--line);
+  margin-top: 0.75rem;
+  padding: 1.5rem;
+  background: var(--surface);
 }
 
 time {

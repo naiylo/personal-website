@@ -8,7 +8,6 @@
 
 .contact-inner {
   padding-block: clamp(2rem, 6vw, 5rem);
-  border-top: 1px solid var(--line);
 }
 
 .title-row {
@@ -21,9 +20,8 @@
 
 h2 {
   margin: 0;
-  font: 600 clamp(4.5rem, 11vw, 11rem) / 0.78 var(--font-pixel);
-  letter-spacing: -0.06em;
-  text-transform: uppercase;
+  font: 500 clamp(4.5rem, 10vw, 10rem) / 0.88 var(--font-sans);
+  letter-spacing: -0.07em;
 }
 
 h2 span {
@@ -47,13 +45,15 @@ h2 span {
 
 nav {
   display: grid;
+  gap: 0.5rem;
 }
 
 nav a {
   display: flex;
   justify-content: space-between;
   padding-block: 1rem;
-  border-bottom: 1px solid var(--line);
+  padding-inline: 0.9rem;
+  background: var(--surface);
   font: 500 0.75rem/1 var(--font-mono);
   letter-spacing: 0.08em;
   text-decoration: none;
@@ -62,7 +62,7 @@ nav a {
 }
 
 nav a:hover {
-  padding-inline: 0.5rem;
+  padding-inline: 1.2rem;
   color: var(--yellow);
 }
 
@@ -71,7 +71,6 @@ nav a:hover {
   justify-content: space-between;
   padding-block: 1.25rem 2rem;
   color: var(--muted);
-  border-top: 1px solid var(--line);
   font: 400 0.62rem/1.5 var(--font-mono);
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -88,13 +87,7 @@ nav a:hover {
   }
 
   h2 {
-    font-size: clamp(3rem, 16vw, 4.5rem);
-  }
-
-  .title-row app-pixel-sprite {
-    justify-self: end;
-    transform: scale(0.65);
-    transform-origin: right center;
+    font-size: clamp(3.3rem, 16vw, 4.8rem);
   }
 
   .contact-grid {
