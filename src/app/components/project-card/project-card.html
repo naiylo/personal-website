@@ -1,6 +1,6 @@
-<article class="project" [attr.data-accent]="project().accent">
+<article class="project">
   <div class="project-meta">
-    <span>{{ project().number }}</span>
+    <span>{{ project().category }}</span>
     <span>{{ project().status }}</span>
   </div>
 
@@ -13,8 +13,8 @@
           <i class="thumbnail-play"></i>
         </span>
         <span class="scan-line"></span>
-        <span class="spark spark-a">✦</span>
-        <span class="spark spark-b">+</span>
+        <span class="spark spark-a"></span>
+        <span class="spark spark-b"></span>
       }
       @case ('llm') {
         <span class="chat-bubble">hi!</span>
@@ -37,7 +37,6 @@
   </div>
 
   <div class="project-copy">
-    <p class="eyebrow">{{ project().category }}</p>
     <h3>{{ project().title }}</h3>
     <p class="description">{{ project().description }}</p>
 

@@ -2,17 +2,11 @@
   display: block;
 }
 
-.heading-grid {
-  display: grid;
-  grid-template-columns: minmax(130px, 0.28fr) 1fr;
-  gap: 2rem;
-  align-items: start;
-}
-
 h2 {
+  max-width: 12ch;
   margin: 0;
-  font: 500 clamp(3.6rem, 7vw, 7rem) / 0.92 var(--font-sans);
-  letter-spacing: -0.06em;
+  font: 500 clamp(3.5rem, 7vw, 5.75rem) / 0.95 var(--font-sans);
+  letter-spacing: -0.04em;
 }
 
 h2 span {
@@ -20,11 +14,7 @@ h2 span {
 }
 
 @media (max-width: 700px) {
-  .heading-grid {
-    grid-template-columns: 1fr;
-  }
-
   h2 {
-    font-size: clamp(3rem, 14vw, 4.25rem);
+    font-size: clamp(3rem, 13vw, 4.2rem);
   }
 }

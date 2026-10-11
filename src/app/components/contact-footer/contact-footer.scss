@@ -15,17 +15,17 @@
   gap: 2rem;
   align-items: end;
   justify-content: space-between;
-  margin-block: clamp(3rem, 7vw, 6rem);
+  margin-bottom: clamp(3rem, 7vw, 6rem);
 }
 
 h2 {
   margin: 0;
-  font: 500 clamp(4.5rem, 10vw, 10rem) / 0.88 var(--font-sans);
-  letter-spacing: -0.07em;
+  font: 500 clamp(4.25rem, 9vw, 6rem) / 0.94 var(--font-sans);
+  letter-spacing: -0.04em;
 }
 
 h2 span {
-  color: var(--yellow);
+  color: var(--accent);
 }
 
 .contact-grid {
@@ -38,7 +38,7 @@ h2 span {
 .contact-grid > p {
   max-width: 490px;
   margin: 0;
-  color: #c4c4c4;
+  color: #c8c7c2;
   font-size: 1.1rem;
   line-height: 1.6;
 }
@@ -53,7 +53,7 @@ nav a {
   justify-content: space-between;
   padding-block: 1rem;
   padding-inline: 0.9rem;
-  background: var(--surface);
+  border-top: 1px solid var(--line);
   font: 500 0.75rem/1 var(--font-mono);
   letter-spacing: 0.08em;
   text-decoration: none;
@@ -63,7 +63,7 @@ nav a {
 
 nav a:hover {
   padding-inline: 1.2rem;
-  color: var(--yellow);
+  color: var(--accent);
 }
 
 .footer-line {

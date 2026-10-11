@@ -10,10 +10,10 @@ export const PORTFOLIO: PortfolioData = {
   github: 'https://github.com/naiylo',
   linkedin: 'https://de.linkedin.com/in/oskar-schiedewitz/de',
   intro:
-    'I study Computer Science at HPI and work on machine learning, AI engineering, and full-stack software.',
+    'I am a Computer Science master\'s student at HPI and a working student in Software and AI Engineering at SAP. I enjoy turning machine-learning ideas into dependable software.',
   about: [
-    'I study Computer Science at HPI with a focus on Data and AI. I am especially interested in neural networks, data systems, and understanding the fundamentals behind current AI tools.',
-    'Alongside my studies, I work as a Software and AI Engineering Intern at SAP. I like building practical projects and following them from an initial idea to working software.',
+    'I am Oskar, a machine-learning engineer and Computer Science student based in Potsdam. At HPI, I focus on Data and AI and currently hold an average grade of 1.2.',
+    'Alongside my studies, I work at SAP on software, AI engineering, reliability, and automation. Before that, I built research software at GFZ and worked across several computer-science research groups at the University of Potsdam.',
   ],
   projects: [
     {
@@ -24,7 +24,6 @@ export const PORTFOLIO: PortfolioData = {
       category: 'COMPUTER VISION',
       technologies: ['Image Analysis', 'YouTube', 'AI Detection'],
       status: 'WORK IN PROGRESS',
-      accent: 'yellow',
       preview: 'thumbnail',
     },
     {
@@ -35,7 +34,6 @@ export const PORTFOLIO: PortfolioData = {
       category: 'DEEP LEARNING',
       technologies: ['Neural Networks', 'From Scratch', 'Real Data'],
       status: 'WORK IN PROGRESS',
-      accent: 'green',
       preview: 'llm',
     },
     {
@@ -46,7 +44,6 @@ export const PORTFOLIO: PortfolioData = {
       category: 'RETRIEVAL / LLMS',
       technologies: ['RAG', 'Retrieval', 'LLMs'],
       status: 'WORK IN PROGRESS',
-      accent: 'blue',
       preview: 'rag',
     },
   ],
@@ -64,24 +61,38 @@ export const PORTFOLIO: PortfolioData = {
     'R / Data Processing',
     'Git / CI/CD / MCP',
   ],
+  education: [
+    {
+      period: '2025 - NOW',
+      degree: 'M.Sc. Computer Science',
+      institution: 'Hasso Plattner Institute',
+      detail: 'Data and AI specialization / Current average: 1.2',
+    },
+    {
+      period: '2021 - 2025',
+      degree: 'B.Sc. Computational Science',
+      institution: 'University of Potsdam',
+      detail: 'Final grade: 1.6 / Bachelor thesis: 1.5',
+    },
+  ],
   experience: [
     {
-      period: '2025 — NOW',
-      role: 'Software / AI Engineering Intern',
+      period: '2025 - NOW',
+      role: 'Software / AI Engineering Working Student',
       organization: 'SAP',
-      summary: 'Reliability engineering, automation, product improvements, and CI/CD.',
+      summary: 'Building reliability and automation features, improving GreenToken, and making CI/CD workflows faster.',
     },
     {
-      period: '2024 — 2025',
+      period: '2024 - 2025',
       role: 'Software Engineering Intern',
       organization: 'GFZ Helmholtz Centre for Geosciences',
-      summary: 'Research software for LiDAR analysis and data preprocessing.',
+      summary: 'Built the voxelizeR package for LiDAR analysis and prepared the research software for a public CRAN release.',
     },
     {
-      period: '2022 — 2025',
+      period: '2022 - 2025',
       role: 'Student Research Assistant',
       organization: 'University of Potsdam',
-      summary: 'Algorithms, theoretical computer science, and software engineering.',
+      summary: 'Worked with research groups in algorithms, theoretical computer science, and software engineering, and led seminars and project discussions.',
     },
   ],
 };

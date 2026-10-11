@@ -4,21 +4,18 @@
 }
 
 .project {
-  --project-accent: var(--yellow);
+  --project-accent: var(--accent);
   display: flex;
   flex-direction: column;
   min-height: 100%;
   padding: clamp(1.25rem, 2vw, 1.75rem);
   background: var(--surface);
-  transition: background 220ms ease, transform 220ms ease;
+  transition: background 220ms ease, transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.project[data-accent='green'] { --project-accent: var(--green); }
-.project[data-accent='blue'] { --project-accent: var(--blue); }
-
 .project:hover {
-  background: #151515;
-  transform: translateY(-5px);
+  background: var(--surface-raised);
+  transform: translateY(-4px);
 }
 
 .project-meta {
@@ -39,6 +36,7 @@
   display: grid;
   place-items: center;
   min-height: 230px;
+  flex: 1;
   margin-block: 1.25rem 2.25rem;
   overflow: hidden;
   background: var(--canvas);
@@ -47,7 +45,7 @@
 .preview::before {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 42%, color-mix(in srgb, var(--project-accent), transparent 84%), transparent 48%);
+  border: 1px solid color-mix(in srgb, var(--project-accent), transparent 88%);
   content: '';
 }
 
@@ -58,16 +56,16 @@
 }
 
 .project-copy h3 {
-  margin: 0.9rem 0 1rem;
+  margin: 0 0 1rem;
   font-size: clamp(1.65rem, 2.4vw, 2.35rem);
   font-weight: 500;
   line-height: 1.04;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.04em;
 }
 
 .description {
   margin: 0;
-  color: #c4c4c4;
+  color: #c8c7c2;
   font-size: 0.95rem;
   line-height: 1.65;
 }
@@ -75,78 +73,96 @@
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: 0.55rem;
   margin: auto 0 0;
   padding: 1.8rem 0 0;
   list-style: none;
 }
 
 .tags li {
-  padding: 0.44rem 0.56rem;
   color: var(--muted);
-  background: #0d0d0d;
   font: 400 0.61rem/1 var(--font-mono);
+}
+
+.tags li:not(:last-child)::after {
+  margin-left: 0.55rem;
+  color: var(--line);
+  content: '/';
 }
 
 /* Thumbnail detector: a tiny image card being scanned from top to bottom. */
 .thumbnail-card {
   position: relative;
   z-index: 1;
-  width: 142px;
-  height: 92px;
+  width: min(58%, 230px);
+  aspect-ratio: 1.54;
   overflow: hidden;
   background: #171717;
-  box-shadow: 8px 8px 0 color-mix(in srgb, var(--project-accent), transparent 70%);
+  border: 1px solid color-mix(in srgb, var(--project-accent), transparent 72%);
 }
 
 .thumbnail-sky {
   position: absolute;
   inset: 0 0 35%;
-  background: var(--blue);
-  opacity: 0.72;
+  background: color-mix(in srgb, var(--project-accent), var(--canvas) 78%);
 }
 
 .thumbnail-hill {
   position: absolute;
-  right: -15px;
-  bottom: -25px;
-  width: 110px;
-  height: 85px;
-  background: var(--green);
+  right: -10%;
+  bottom: -28%;
+  width: 72%;
+  height: 96%;
+  background: color-mix(in srgb, var(--project-accent), var(--canvas) 58%);
   transform: rotate(28deg);
 }
 
 .thumbnail-play {
   position: absolute;
   z-index: 2;
-  top: 34px;
-  left: 58px;
-  width: 0;
-  height: 0;
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent;
-  border-left: 20px solid var(--ink);
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 24px;
+  background: var(--ink);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  transform: translate(-38%, -50%);
 }
 
 .scan-line {
   position: absolute;
   z-index: 3;
-  width: 158px;
+  width: min(66%, 250px);
   height: 2px;
   background: var(--project-accent);
-  box-shadow: 0 0 12px var(--project-accent);
   animation: scan 2.4s steps(6) infinite;
 }
 
 .spark {
   position: absolute;
   z-index: 2;
-  color: var(--project-accent);
-  font: 600 1.2rem/1 var(--font-pixel);
+  width: 18px;
+  height: 18px;
 }
 
-.spark-a { top: 35px; right: 44px; }
-.spark-b { bottom: 35px; left: 38px; }
+.spark::before,
+.spark::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--project-accent);
+  content: '';
+  transform: translate(-50%, -50%);
+}
+
+.spark::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.spark-a { top: 35px; right: 44px; transform: rotate(45deg); }
+.spark-b { bottom: 35px; left: 38px; transform: scale(0.7); }
 
 /* The custom LLM icon makes the forward/backward flow visible without a chart. */
 .chat-bubble {
@@ -158,7 +174,6 @@
   color: var(--canvas);
   background: var(--project-accent);
   font: 600 0.9rem/1 var(--font-pixel);
-  box-shadow: 5px 5px 0 color-mix(in srgb, var(--project-accent), transparent 65%);
 }
 
 .neural-node {
@@ -205,7 +220,7 @@
   height: 76px;
   padding: 15px 10px;
   background: var(--surface);
-  box-shadow: 5px 5px 0 color-mix(in srgb, var(--project-accent), transparent 72%);
+  border: 1px solid color-mix(in srgb, var(--project-accent), transparent 74%);
 }
 
 .document i {

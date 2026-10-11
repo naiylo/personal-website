@@ -1,4 +1,3 @@
-export type Accent = 'yellow' | 'green' | 'blue';
 export type PreviewKind = 'thumbnail' | 'llm' | 'rag';
 
 export interface Project {
@@ -8,7 +7,6 @@ export interface Project {
   readonly category: string;
   readonly technologies: readonly string[];
   readonly status: string;
-  readonly accent: Accent;
   readonly preview: PreviewKind;
   readonly href?: string;
 }
@@ -18,6 +16,13 @@ export interface Experience {
   readonly role: string;
   readonly organization: string;
   readonly summary: string;
+}
+
+export interface Education {
+  readonly period: string;
+  readonly degree: string;
+  readonly institution: string;
+  readonly detail: string;
 }
 
 export interface PortfolioData {
@@ -32,5 +37,6 @@ export interface PortfolioData {
   readonly projects: readonly Project[];
   readonly focusAreas: readonly string[];
   readonly technologies: readonly string[];
+  readonly education: readonly Education[];
   readonly experience: readonly Experience[];
 }

@@ -7,9 +7,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SectionHeadingComponent {
-  readonly index = input.required<string>();
   readonly firstLine = input.required<string>();
   readonly secondLine = input<string>('');
-  readonly label = input.required<string>();
   readonly headingId = input<string>();
 }

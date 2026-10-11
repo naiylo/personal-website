@@ -61,6 +61,6 @@ If the repository name changes, update `build:pages` in `package.json` so `--bas
 
 - Semantic landmarks and headings make the page easy to navigate.
 - A keyboard-visible skip link and focus states are included.
-- Motion is CSS-first and disabled by `prefers-reduced-motion`.
+- GSAP timelines keep motion deliberate, while `prefers-reduced-motion` disables it for visitors who request that setting.
 - Pixel art is original CSS, so there are no copyrighted game assets or heavy image downloads.
 - The layout is fluid from small phones to large desktop screens.

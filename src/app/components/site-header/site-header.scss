@@ -1,5 +1,11 @@
 :host {
   display: block;
+  position: sticky;
+  z-index: 20;
+  top: 0;
+  background: color-mix(in srgb, var(--canvas), transparent 8%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .header {
@@ -7,7 +13,7 @@
   grid-template-columns: 1fr auto 1fr;
   gap: 2rem;
   align-items: center;
-  min-height: 88px;
+  min-height: 76px;
 }
 
 .brand,
@@ -21,16 +27,9 @@ nav a {
 
 .brand {
   display: inline-flex;
-  gap: 0.65rem;
   align-items: center;
   width: fit-content;
-}
-
-.brand-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--yellow);
-  box-shadow: 4px 4px 0 color-mix(in srgb, var(--yellow), transparent 55%);
+  color: var(--ink);
 }
 
 nav {
@@ -64,5 +63,13 @@ nav a:hover,
     grid-column: 1 / -1;
     justify-content: space-between;
     padding-block: 0.2rem 1rem;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  :host {
+    background: var(--canvas);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 }

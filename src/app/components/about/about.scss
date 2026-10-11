@@ -16,6 +16,7 @@
 
 .about-copy {
   grid-column: 2;
+  max-width: 38ch;
 }
 
 .about-copy p {
@@ -28,7 +29,7 @@
 .now-grid {
   grid-column: 2;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   margin-top: 2rem;
 }
@@ -39,6 +40,14 @@
   min-height: 180px;
   padding: clamp(1.4rem, 3vw, 2.4rem);
   background: var(--surface);
+}
+
+.now-label {
+  margin: 0;
+  color: var(--accent);
+  font: 500 0.8rem/1.2 var(--font-pixel);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .now-grid strong {
@@ -60,6 +69,7 @@
   .about-copy,
   .now-grid {
     grid-column: auto;
+    grid-template-columns: 1fr 1fr;
   }
 }
 

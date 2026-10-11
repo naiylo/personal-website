@@ -1,17 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Pixelify+Sans:wght@500;600;700&display=swap');
+@import '@fontsource-variable/outfit/wght.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';
+@import '@fontsource/pixelify-sans/500.css';
+@import '@fontsource/pixelify-sans/600.css';
 
 :root {
-  --ink: #f5f5f5;
-  --muted: #929292;
-  --canvas: #080808;
-  --surface: #111111;
-  --line: #303030;
-  --yellow: #ffd93d;
-  --green: #a4e86c;
-  --blue: #5a8cff;
+  --ink: #f1f0eb;
+  --muted: #a4a3a0;
+  --canvas: #0a0a0b;
+  --surface: #141416;
+  --surface-raised: #1a1a1d;
+  --line: #303034;
+  --accent: #f2c84b;
+  --success: #92c96f;
   --page-gutter: clamp(1.25rem, 4vw, 4.5rem);
-  --section-space: clamp(6rem, 12vw, 11rem);
-  --font-sans: 'Inter', system-ui, sans-serif;
+  --section-space: clamp(7rem, 12vw, 11rem);
+  --font-sans: 'Outfit Variable', 'Outfit', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --font-pixel: 'Pixelify Sans', var(--font-mono);
   color-scheme: dark;
@@ -30,18 +34,36 @@ body {
   margin: 0;
   min-width: 320px;
   color: var(--ink);
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-    var(--canvas);
-  background-size: 48px 48px;
+  background: var(--canvas);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
   color: var(--canvas);
-  background: var(--yellow);
+  background: var(--accent);
+}
+
+* {
+  scrollbar-color: #68686d var(--canvas);
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--canvas);
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #68686d;
+  border: 3px solid var(--canvas);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
 }
 
 a {
@@ -55,7 +77,7 @@ a {
 
 button:focus-visible,
 a:focus-visible {
-  outline: 2px solid var(--yellow);
+  outline: 2px solid var(--accent);
   outline-offset: 5px;
 }
 
@@ -65,12 +87,8 @@ a:focus-visible {
   padding-inline: var(--page-gutter);
 }
 
-.eyebrow {
-  margin: 0;
-  color: var(--muted);
-  font: 600 0.82rem/1.2 var(--font-pixel);
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+:where(section, footer)[id] {
+  scroll-margin-top: 7rem;
 }
 
 .text-link {
@@ -104,17 +122,6 @@ a:focus-visible {
   transform-origin: left;
 }
 
-[appReveal] {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 650ms ease, transform 650ms cubic-bezier(0.2, 0.8, 0.2, 1);
-}
-
-[appReveal].is-visible {
-  opacity: 1;
-  transform: none;
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -129,8 +136,4 @@ a:focus-visible {
     transition-duration: 0.01ms !important;
   }
 
-  [appReveal] {
-    opacity: 1;
-    transform: none;
-  }
 }
