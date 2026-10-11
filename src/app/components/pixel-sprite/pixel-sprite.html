@@ -1,0 +1,20 @@
+<div class="sprite" [class]="'sprite sprite--' + variant()" aria-hidden="true">
+  @switch (variant()) {
+    @case ('bot') {
+      <span class="antenna"></span>
+      <span class="bot-face"><i></i><i></i></span>
+      <span class="bot-body"></span>
+    }
+    @case ('orb') {
+      <span class="orb-core"></span>
+      <span class="orb-pixel pixel-a"></span>
+      <span class="orb-pixel pixel-b"></span>
+      <span class="orb-pixel pixel-c"></span>
+    }
+    @case ('runner') {
+      <span class="runner-head"><i></i></span>
+      <span class="runner-body"></span>
+      <span class="runner-tail"></span>
+    }
+  }
+</div>

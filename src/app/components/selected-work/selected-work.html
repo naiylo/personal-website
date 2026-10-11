@@ -1,0 +1,18 @@
+<section class="work shell" id="work" aria-labelledby="work-title">
+  <div appReveal>
+    <app-section-heading
+      index="01"
+      label="Selected work"
+      firstLine="Selected"
+      secondLine="work."
+    />
+  </div>
+
+  <div class="projects">
+    @for (project of projects(); track project.number) {
+      <div appReveal>
+        <app-project-card [project]="project" />
+      </div>
+    }
+  </div>
+</section>

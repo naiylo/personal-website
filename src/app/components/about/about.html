@@ -1,0 +1,31 @@
+<section class="about shell" id="about" aria-labelledby="about-title">
+  <div appReveal>
+    <app-section-heading index="02" label="About me" firstLine="About" secondLine="me." />
+  </div>
+
+  <div class="about-grid" appReveal>
+    <div class="about-copy">
+      @for (paragraph of portfolio().about; track paragraph) {
+        <p>{{ paragraph }}</p>
+      }
+    </div>
+
+    <div class="now-grid">
+      <article>
+        <p class="eyebrow">Currently working</p>
+        <strong>Software / AI Engineering</strong>
+        <span>SAP · Berlin / Potsdam</span>
+      </article>
+      <article>
+        <p class="eyebrow">Currently studying</p>
+        <strong>M.Sc. Computer Science</strong>
+        <span>Hasso Plattner Institute · Data &amp; AI</span>
+      </article>
+    </div>
+
+    <div class="pixel-note">
+      <app-pixel-sprite variant="orb" />
+      <span>Learning in progress</span>
+    </div>
+  </div>
+</section>

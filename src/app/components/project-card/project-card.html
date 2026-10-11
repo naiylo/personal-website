@@ -1,0 +1,44 @@
+<article class="project" [attr.data-accent]="project().accent">
+  <div class="project-number">{{ project().number }}</div>
+
+  <div class="project-copy">
+    <p class="eyebrow">{{ project().category }}</p>
+    <h3>{{ project().title }}</h3>
+    <p class="description">{{ project().description }}</p>
+
+    <ul class="tags" aria-label="Technologies">
+      @for (technology of project().technologies; track technology) {
+        <li>{{ technology }}</li>
+      }
+    </ul>
+  </div>
+
+  <div class="preview" [class]="'preview preview--' + project().preview" aria-hidden="true">
+    @switch (project().preview) {
+      @case ('systems') {
+        <span class="system-node node-a"></span>
+        <span class="system-node node-b"></span>
+        <span class="system-node node-c"></span>
+        <span class="system-line line-a"></span>
+        <span class="system-line line-b"></span>
+        <span class="system-pulse"></span>
+      }
+      @case ('voxel') {
+        @for (cell of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; track cell) {
+          <span [style.--i]="cell"></span>
+        }
+      }
+      @case ('research') {
+        <span class="axis axis-y"></span>
+        <span class="axis axis-x"></span>
+        <span class="bar bar-a"></span>
+        <span class="bar bar-b"></span>
+        <span class="bar bar-c"></span>
+        <span class="research-dot"></span>
+      }
+    }
+    <span class="preview-label">{{ project().status }}</span>
+  </div>
+
+  <span class="project-arrow" aria-hidden="true">↗</span>
+</article>

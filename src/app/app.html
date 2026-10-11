@@ -1,0 +1,12 @@
+<a class="skip-link" href="#main">Skip to content</a>
+
+<app-site-header [brand]="portfolio.shortName" [github]="portfolio.github" />
+
+<main id="main">
+  <app-hero [portfolio]="portfolio" />
+  <app-selected-work [projects]="portfolio.projects" />
+  <app-about [portfolio]="portfolio" />
+  <app-experience-tools [portfolio]="portfolio" />
+</main>
+
+<app-contact-footer [portfolio]="portfolio" />

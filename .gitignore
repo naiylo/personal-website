@@ -1,0 +1,16 @@
+# Dependencies and Angular build output
+/node_modules
+/dist
+/.angular
+
+# Local editor and operating-system files
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+Thumbs.db
+
+# Logs and local environment values
+*.log
+.env
+.env.*

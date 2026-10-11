@@ -1,0 +1,43 @@
+<section class="experience shell" id="experience" aria-labelledby="experience-title">
+  <div appReveal>
+    <app-section-heading
+      index="03"
+      label="Experience and tools"
+      firstLine="Experience"
+      secondLine="& tools."
+    />
+  </div>
+
+  <div class="capabilities" appReveal>
+    <article>
+      <p class="eyebrow">Focus areas</p>
+      <ul>
+        @for (focus of portfolio().focusAreas; track focus; let index = $index) {
+          <li><span>0{{ index + 1 }}</span>{{ focus }}</li>
+        }
+      </ul>
+    </article>
+    <article>
+      <p class="eyebrow">Technologies</p>
+      <ul>
+        @for (technology of portfolio().technologies; track technology; let index = $index) {
+          <li><span>0{{ index + 1 }}</span>{{ technology }}</li>
+        }
+      </ul>
+    </article>
+  </div>
+
+  <div class="timeline" appReveal>
+    <p class="eyebrow">Experience log</p>
+    @for (item of portfolio().experience; track item.period) {
+      <article>
+        <time>{{ item.period }}</time>
+        <div>
+          <h3>{{ item.role }}</h3>
+          <p>{{ item.organization }}</p>
+        </div>
+        <p class="summary">{{ item.summary }}</p>
+      </article>
+    }
+  </div>
+</section>

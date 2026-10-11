@@ -1,0 +1,33 @@
+:host {
+  display: block;
+}
+
+.heading-grid {
+  display: grid;
+  grid-template-columns: minmax(130px, 0.28fr) 1fr;
+  gap: 2rem;
+  align-items: start;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+h2 {
+  margin: 0;
+  font: 600 clamp(3.8rem, 8.8vw, 9rem) / 0.8 var(--font-pixel);
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+}
+
+h2 span {
+  display: block;
+}
+
+@media (max-width: 700px) {
+  .heading-grid {
+    grid-template-columns: 1fr;
+  }
+
+  h2 {
+    font-size: clamp(3rem, 16vw, 4.5rem);
+  }
+}

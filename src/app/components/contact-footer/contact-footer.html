@@ -1,0 +1,24 @@
+<footer class="contact shell" id="contact" aria-labelledby="contact-title">
+  <div class="contact-inner" appReveal>
+    <p class="eyebrow">04 / Contact</p>
+    <div class="title-row">
+      <h2 id="contact-title">Let’s build<br />something<span>.</span></h2>
+      <app-pixel-sprite variant="runner" />
+    </div>
+
+    <div class="contact-grid">
+      <p>Always interested in interesting problems, ambitious projects, and new ideas.</p>
+      <nav aria-label="Contact links">
+        <a [href]="'mailto:' + portfolio().email">Email <span>↗</span></a>
+        <a [href]="portfolio().github" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+        <a [href]="portfolio().linkedin" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
+      </nav>
+    </div>
+  </div>
+
+  <div class="footer-line">
+    <span>© {{ year }} {{ portfolio().name }}</span>
+    <span>{{ portfolio().location }}</span>
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
