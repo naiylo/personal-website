@@ -12,46 +12,55 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  # Let an active production deployment finish; only one Pages deployment can
+  # be processed at a time.
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v6
+
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Build the Angular app
+        # configure-pages returns the correct path for project sites, user sites,
+        # and custom domains, so the repository name is not hard-coded here.
+        run: npm run build -- --base-href "${{ steps.pages.outputs.base_path }}/"
+
+      - name: Verify the site output
+        shell: bash
+        run: test -f dist/personal-website/browser/index.html
+
+      - name: Upload the static site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist/personal-website/browser
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Check out the repository
-        uses: actions/checkout@v4
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 11.25.0
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
-          cache: pnpm
-
-      - name: Install locked dependencies
-        run: pnpm install --frozen-lockfile
-
-      # GitHub Pages hosts project repositories below /<repository>/.
-      # The explicit base href keeps scripts, styles, and the favicon resolvable.
-      - name: Build the Angular app
-        run: pnpm build:pages
-
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v5
-
-      - name: Upload the static site
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist/personal-website/browser
-
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
