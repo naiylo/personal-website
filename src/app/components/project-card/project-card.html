@@ -1,37 +1,58 @@
 <article class="project">
-  <div class="project-meta">
+  <header class="project-meta">
     <span>{{ project().category }}</span>
-    <span>{{ project().status }}</span>
-  </div>
+    <span class="status"><i aria-hidden="true"></i>{{ project().status }}</span>
+  </header>
 
   <div class="preview" [class]="'preview preview--' + project().preview" aria-hidden="true">
     @switch (project().preview) {
       @case ('thumbnail') {
-        <span class="thumbnail-card">
-          <i class="thumbnail-sky"></i>
-          <i class="thumbnail-hill"></i>
-          <i class="thumbnail-play"></i>
-        </span>
-        <span class="scan-line"></span>
-        <span class="spark spark-a"></span>
-        <span class="spark spark-b"></span>
+        <div class="detector-window">
+          <div class="window-bar"><i></i><i></i><i></i><span>visual_cue_scan</span></div>
+          <div class="thumbnail-scene">
+            <span class="scene-sun"></span>
+            <span class="scene-shape scene-shape--one"></span>
+            <span class="scene-shape scene-shape--two"></span>
+            <span class="scan-line"></span>
+            <span class="target-corner target-corner--a"></span>
+            <span class="target-corner target-corner--b"></span>
+          </div>
+          <div class="detector-readout">
+            <span>Texture</span><i></i><span>Edges</span><i></i><span>Artifacts</span><i></i>
+          </div>
+        </div>
       }
       @case ('llm') {
-        <span class="chat-bubble">hi!</span>
-        <span class="neural-node node-a"></span>
-        <span class="neural-node node-b"></span>
-        <span class="neural-node node-c"></span>
-        <span class="neural-line line-a"></span>
-        <span class="neural-line line-b"></span>
-        <span class="neural-line line-c"></span>
-        <span class="gradient-label">∂ loss</span>
+        <div class="model-flow">
+          <div class="token-column">
+            <span>the</span><span>model</span><span>learns</span>
+          </div>
+          <div class="network" aria-hidden="true">
+            <i class="network-line line-a"></i><i class="network-line line-b"></i>
+            <i class="network-line line-c"></i><i class="network-line line-d"></i>
+            <span class="node node-a"></span><span class="node node-b"></span>
+            <span class="node node-c"></span><span class="node node-d"></span>
+            <span class="node node-e"></span>
+          </div>
+          <div class="prediction">
+            <small>next token</small>
+            <strong>...</strong>
+          </div>
+          <span class="flow-caption">forward &#8594; loss &#8594; backward</span>
+        </div>
       }
       @case ('rag') {
-        <span class="document doc-a"><i></i><i></i><i></i></span>
-        <span class="document doc-b"><i></i><i></i><i></i></span>
-        <span class="document doc-c"><i></i><i></i><i></i></span>
-        <span class="search-ring"></span>
-        <span class="answer-chip">A</span>
+        <div class="rag-flow">
+          <div class="rag-stage"><span class="doc-stack"><i></i><i></i><i></i></span><small>Documents</small></div>
+          <span class="connector"></span>
+          <div class="rag-stage"><span class="pixel-grid"><i></i><i></i><i></i><i></i></span><small>Embed</small></div>
+          <span class="connector"></span>
+          <div class="rag-stage rag-stage--active"><span class="search-mark"></span><small>Retrieve</small></div>
+          <span class="connector"></span>
+          <div class="rag-stage"><span class="context-lines"><i></i><i></i><i></i></span><small>Context</small></div>
+          <span class="connector"></span>
+          <div class="rag-stage"><span class="answer-mark">A</span><small>Answer</small></div>
+        </div>
       }
     }
   </div>
@@ -45,5 +66,25 @@
         <li>{{ technology }}</li>
       }
     </ul>
+
+    <details>
+      <summary>Technical notes <span aria-hidden="true">+</span></summary>
+      <div class="technical-notes">
+        <div><strong>Problem</strong><p>{{ project().problem }}</p></div>
+        <div><strong>Approach</strong><p>{{ project().approach }}</p></div>
+        <div><strong>Current focus</strong><p>{{ project().currentFocus }}</p></div>
+      </div>
+    </details>
+
+    @if (project().repositoryUrl || project().demoUrl) {
+      <nav class="project-links" aria-label="Project links">
+        @if (project().repositoryUrl) {
+          <a [href]="project().repositoryUrl" target="_blank" rel="noopener noreferrer">Repository &#8599;</a>
+        }
+        @if (project().demoUrl) {
+          <a [href]="project().demoUrl" target="_blank" rel="noopener noreferrer">Live demo &#8599;</a>
+        }
+      </nav>
+    }
   </div>
 </article>

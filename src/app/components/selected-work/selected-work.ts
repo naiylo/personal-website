@@ -31,20 +31,19 @@ export class SelectedWorkComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.zone.runOutsideAngular(() => {
       this.motion = gsap.matchMedia();
-      this.motion.add(motionPreference, () => {
-        const context = gsap.context(() => {
-          // Keep project content present for accessibility and only animate once
-          // the section actually reaches the viewport.
+      this.motion.add(
+        motionPreference,
+        () => {
           gsap.fromTo(
             '.project-slot',
-            { opacity: 0, y: 28 },
+            { autoAlpha: 0, y: 28 },
             {
-              opacity: 1,
+              autoAlpha: 1,
               y: 0,
               duration: 0.72,
               stagger: 0.1,
               ease: 'power3.out',
-              clearProps: 'transform,opacity',
+              clearProps: 'transform,opacity,visibility',
               scrollTrigger: {
                 trigger: '.projects',
                 start: 'top 82%',
@@ -52,10 +51,9 @@ export class SelectedWorkComponent implements AfterViewInit, OnDestroy {
               },
             },
           );
-        }, this.host.nativeElement);
-
-        return () => context.revert();
-      });
+        },
+        this.host.nativeElement,
+      );
     });
   }
 

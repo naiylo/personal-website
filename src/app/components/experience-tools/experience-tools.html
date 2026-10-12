@@ -1,36 +1,33 @@
 <section class="experience shell" id="experience" aria-labelledby="experience-title">
-  <app-section-heading headingId="experience-title" firstLine="Experience" secondLine="& tools." />
+  <app-section-heading headingId="experience-title" firstLine="Experience" secondLine="& expertise." />
 
-  <div class="capabilities">
-    <article>
-      <h3>What I work on</h3>
-      <ul>
-        @for (focus of portfolio().focusAreas; track focus) {
-          <li>{{ focus }}</li>
-        }
-      </ul>
-    </article>
-    <article>
-      <h3>What I build with</h3>
-      <ul>
-        @for (technology of portfolio().technologies; track technology) {
-          <li>{{ technology }}</li>
-        }
-      </ul>
-    </article>
-  </div>
+  <div class="experience-layout">
+    <div class="timeline" aria-labelledby="work-history-title">
+      <h3 id="work-history-title">Work history</h3>
+      @for (item of portfolio().experience; track item.period) {
+        <article>
+          <time>{{ item.period }}</time>
+          <div class="role">
+            <h4>{{ item.role }}</h4>
+            <p>{{ item.organization }}</p>
+          </div>
+          <p class="summary">{{ item.summary }}</p>
+        </article>
+      }
+    </div>
 
-  <div class="timeline">
-    <h3>Where I have worked</h3>
-    @for (item of portfolio().experience; track item.period) {
-      <article>
-        <time>{{ item.period }}</time>
-        <div>
-          <h3>{{ item.role }}</h3>
-          <p>{{ item.organization }}</p>
-        </div>
-        <p class="summary">{{ item.summary }}</p>
-      </article>
-    }
+    <aside class="expertise" aria-labelledby="expertise-title">
+      <h3 id="expertise-title">Technical focus</h3>
+      @for (group of portfolio().skillGroups; track group.name) {
+        <section>
+          <h4>{{ group.name }}</h4>
+          <ul>
+            @for (skill of group.skills; track skill) {
+              <li>{{ skill }}</li>
+            }
+          </ul>
+        </section>
+      }
+    </aside>
   </div>
 </section>

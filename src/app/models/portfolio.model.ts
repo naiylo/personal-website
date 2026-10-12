@@ -1,14 +1,22 @@
 export type PreviewKind = 'thumbnail' | 'llm' | 'rag';
 
 export interface Project {
-  readonly number: string;
   readonly title: string;
   readonly description: string;
   readonly category: string;
   readonly technologies: readonly string[];
   readonly status: string;
   readonly preview: PreviewKind;
-  readonly href?: string;
+  readonly problem: string;
+  readonly approach: string;
+  readonly currentFocus: string;
+  readonly repositoryUrl?: string;
+  readonly demoUrl?: string;
+}
+
+export interface SkillGroup {
+  readonly name: string;
+  readonly skills: readonly string[];
 }
 
 export interface Experience {
@@ -35,8 +43,7 @@ export interface PortfolioData {
   readonly intro: string;
   readonly about: readonly string[];
   readonly projects: readonly Project[];
-  readonly focusAreas: readonly string[];
-  readonly technologies: readonly string[];
+  readonly skillGroups: readonly SkillGroup[];
   readonly education: readonly Education[];
   readonly experience: readonly Experience[];
 }

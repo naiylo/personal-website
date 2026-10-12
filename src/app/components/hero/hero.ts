@@ -28,48 +28,46 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
   ngAfterViewInit(): void {
     this.zone.runOutsideAngular(() => {
       this.motion = gsap.matchMedia();
-      this.motion.add(motionPreference, () => {
-        const context = gsap.context(() => {
-          const timeline = gsap.timeline({
-            defaults: { ease: 'power3.out' },
-          });
+      this.motion.add(
+        motionPreference,
+        () => {
+          const timeline = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-          // The opening is the page's one authored motion moment: context,
-          // message, and actions arrive in the same order that they are read.
           timeline
             .fromTo(
-              '.hero-kicker',
-              { opacity: 0, y: -10 },
-              { opacity: 1, y: 0, duration: 0.45, clearProps: 'transform,opacity' },
-            )
-            .fromTo(
               '.headline-line',
-              { opacity: 0, yPercent: 105 },
+              { autoAlpha: 0, yPercent: 105 },
               {
-                opacity: 1,
+                autoAlpha: 1,
                 yPercent: 0,
-                duration: 0.85,
-                stagger: 0.09,
-                clearProps: 'transform,opacity',
+                duration: 0.82,
+                stagger: 0.08,
+                clearProps: 'transform,opacity,visibility',
               },
-              '-=0.18',
             )
             .fromTo(
-              '.hero-footer > *',
-              { opacity: 0, y: 18 },
+              '.hero-role',
+              { autoAlpha: 0, x: -18 },
+              { autoAlpha: 1, x: 0, duration: 0.5, clearProps: 'transform,opacity,visibility' },
+              '-=0.42',
+            )
+            .fromTo(
+              '.hero-lower > *',
+              { autoAlpha: 0, y: 18 },
               {
-                opacity: 1,
+                autoAlpha: 1,
                 y: 0,
-                duration: 0.62,
-                stagger: 0.08,
-                clearProps: 'transform,opacity',
+                duration: 0.56,
+                stagger: 0.07,
+                clearProps: 'transform,opacity,visibility',
               },
-              '-=0.35',
+              '-=0.3',
             );
-        }, this.host.nativeElement);
 
-        return () => context.revert();
-      });
+          return () => timeline.revert();
+        },
+        this.host.nativeElement,
+      );
     });
   }
 

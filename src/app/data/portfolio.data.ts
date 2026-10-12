@@ -10,63 +10,69 @@ export const PORTFOLIO: PortfolioData = {
   github: 'https://github.com/naiylo',
   linkedin: 'https://de.linkedin.com/in/oskar-schiedewitz/de',
   intro:
-    'I am a Computer Science master\'s student at HPI and a working student in Software and AI Engineering at SAP. I enjoy turning machine-learning ideas into dependable software.',
+    'I study Computer Science at HPI, engineer software at SAP, and build machine-learning systems from first principles.',
   about: [
-    'I am Oskar, a machine-learning engineer and Computer Science student based in Potsdam. At HPI, I focus on Data and AI and currently hold an average grade of 1.2.',
-    'Alongside my studies, I work at SAP on software, AI engineering, reliability, and automation. Before that, I built research software at GFZ and worked across several computer-science research groups at the University of Potsdam.',
+    'I am Oskar, a Computer Science master\'s student at HPI based in Potsdam. My focus is Data and AI, and I am especially interested in understanding machine-learning systems from first principles.',
+    'I like moving between theory and implementation: learning how a system works, building it myself, and turning the result into dependable software.',
   ],
   projects: [
     {
-      number: '01',
       title: 'YouTube AI Thumbnail Detector',
       description:
         'I am building a detector that analyzes YouTube thumbnails and estimates whether AI-generated imagery was used.',
-      category: 'COMPUTER VISION',
+      category: 'Computer vision',
       technologies: ['Image Analysis', 'YouTube', 'AI Detection'],
-      status: 'WORK IN PROGRESS',
+      status: 'In development',
       preview: 'thumbnail',
+      problem: 'Estimate whether a YouTube thumbnail contains AI-generated imagery without presenting uncertainty as fact.',
+      approach: 'Analyze visual cues in the thumbnail and return an estimate that can be inspected rather than a definitive label.',
+      currentFocus: 'Evaluating which image signals are useful and how to communicate model confidence responsibly.',
     },
     {
-      number: '02',
       title: 'Language Model From Scratch',
       description:
         'I am implementing a small language model, including forward and backward propagation, and training it on real text data as a chat companion.',
-      category: 'DEEP LEARNING',
+      category: 'Deep learning',
       technologies: ['Neural Networks', 'From Scratch', 'Real Data'],
-      status: 'WORK IN PROGRESS',
+      status: 'In development',
       preview: 'llm',
+      problem: 'Understand language models beyond the API layer by implementing the mechanics that make training possible.',
+      approach: 'Build forward and backward propagation, train on real text, and expose the resulting model through a small chat companion.',
+      currentFocus: 'Studying gradient flow, training behavior, and the relationship between architecture and generated text.',
     },
     {
-      number: '03',
       title: 'RAG System',
       description:
         'I am building a retrieval-augmented generation system to understand how retrieval, context selection, and generation work together.',
-      category: 'RETRIEVAL / LLMS',
+      category: 'Retrieval / LLMs',
       technologies: ['RAG', 'Retrieval', 'LLMs'],
-      status: 'WORK IN PROGRESS',
+      status: 'In development',
       preview: 'rag',
+      problem: 'Understand how external knowledge becomes usable context for a language model.',
+      approach: 'Build retrieval, context selection, and response generation as explicit stages that can be inspected independently.',
+      currentFocus: 'Making the retrieval path observable so context quality can be evaluated separately from generation.',
     },
   ],
-  focusAreas: [
-    'Machine Learning & Deep Learning',
-    'AI Engineering & Automation',
-    'Neural Networks, RAG & LLMs',
-    'Full-Stack Product Engineering',
-  ],
-  technologies: [
-    'Python / PyTorch',
-    'Java / Spring Boot',
-    'TypeScript / Angular',
-    'HTML / CSS / Tailwind',
-    'R / Data Processing',
-    'Git / CI/CD / MCP',
+  skillGroups: [
+    {
+      name: 'Machine Learning & AI',
+      skills: ['Python', 'PyTorch', 'Neural networks', 'Deep learning', 'RAG', 'LLMs'],
+    },
+    {
+      name: 'Software Engineering',
+      skills: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'APIs'],
+    },
+    {
+      name: 'Engineering Tools',
+      skills: ['Git', 'CI/CD', 'Development tooling', 'Automation'],
+    },
   ],
   education: [
     {
       period: '2025 - NOW',
       degree: 'M.Sc. Computer Science',
       institution: 'Hasso Plattner Institute',
-      detail: 'Data and AI specialization / Current average: 1.2',
+      detail: 'Data and AI specialization / Current average: 1.4',
     },
     {
       period: '2021 - 2025',

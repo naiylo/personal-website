@@ -1,27 +1,25 @@
 <section class="about shell" id="about" aria-labelledby="about-title">
-  <app-section-heading headingId="about-title" firstLine="A little" secondLine="about me." />
+  <div class="about-inner">
+    <app-section-heading headingId="about-title" firstLine="About" secondLine="me." />
 
-  <div class="about-grid">
     <div class="about-copy">
       @for (paragraph of portfolio().about; track paragraph) {
         <p>{{ paragraph }}</p>
       }
     </div>
 
-    <div class="now-grid">
-      <article>
-        <p class="now-label">Working at</p>
-        <strong>SAP</strong>
-        <span>Software / AI Engineering Working Student</span>
-      </article>
+    <div class="education" aria-labelledby="education-title">
+      <h3 id="education-title">Education</h3>
       @for (item of portfolio().education; track item.period) {
         <article>
-          <p class="now-label">{{ item.period === '2025 - NOW' ? 'Studying now' : 'Bachelor' }}</p>
-          <strong>{{ item.degree }}</strong>
-          <span>{{ item.institution }}<br />{{ item.detail }}</span>
+          <time>{{ item.period }}</time>
+          <div>
+            <strong>{{ item.degree }}</strong>
+            <span>{{ item.institution }}</span>
+            <p>{{ item.detail }}</p>
+          </div>
         </article>
       }
     </div>
-
   </div>
 </section>

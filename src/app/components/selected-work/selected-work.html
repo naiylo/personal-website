@@ -1,8 +1,11 @@
 <section class="work shell" id="work" aria-labelledby="work-title">
-  <app-section-heading headingId="work-title" firstLine="Current" secondLine="projects." />
+  <div class="section-intro">
+    <app-section-heading headingId="work-title" firstLine="Selected" secondLine="work." />
+    <p>Three systems in progress, documented around the questions they are helping me answer.</p>
+  </div>
 
   <div class="projects">
-    @for (project of projects(); track project.number) {
+    @for (project of projects(); track project.title) {
       <div class="project-slot">
         <app-project-card [project]="project" />
       </div>

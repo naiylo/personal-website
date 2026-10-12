@@ -7,16 +7,16 @@
     <div class="contact-grid">
       <p>If you want to talk about machine learning, research, or a software project, feel free to write to me.</p>
       <nav aria-label="Contact links">
-        <a [href]="'mailto:' + portfolio().email">Email <span>↗</span></a>
-        <a [href]="portfolio().github" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
-        <a [href]="portfolio().linkedin" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
+        <a [href]="'mailto:' + portfolio().email">Email <span aria-hidden="true">&#8599;</span></a>
+        <a [href]="portfolio().github" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">&#8599;</span></a>
+        <a [href]="portfolio().linkedin" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">&#8599;</span></a>
       </nav>
     </div>
   </div>
 
   <div class="footer-line">
-    <span>© {{ year }} {{ portfolio().name }}</span>
+    <span>&copy; {{ year }} {{ portfolio().name }}</span>
     <span>{{ portfolio().location }}</span>
-    <a href="#top">Back to top ↑</a>
+    <a href="#top">Back to top <span aria-hidden="true">&#8593;</span></a>
   </div>
 </footer>

@@ -1,20 +1,21 @@
 @import '@fontsource-variable/outfit/wght.css';
-@import '@fontsource/jetbrains-mono/400.css';
-@import '@fontsource/jetbrains-mono/500.css';
-@import '@fontsource/pixelify-sans/500.css';
-@import '@fontsource/pixelify-sans/600.css';
+@import '@fontsource/jetbrains-mono/latin-400.css';
+@import '@fontsource/jetbrains-mono/latin-500.css';
+@import '@fontsource/pixelify-sans/latin-500.css';
+@import '@fontsource/pixelify-sans/latin-600.css';
 
 :root {
-  --ink: #f1f0eb;
-  --muted: #a4a3a0;
+  --ink: #f3f1ea;
+  --muted: #aaa9a3;
   --canvas: #0a0a0b;
-  --surface: #141416;
-  --surface-raised: #1a1a1d;
+  --surface: #131315;
+  --surface-raised: #19191c;
   --line: #303034;
+  --line-strong: #47474c;
   --accent: #f2c84b;
-  --success: #92c96f;
   --page-gutter: clamp(1.25rem, 4vw, 4.5rem);
-  --section-space: clamp(7rem, 12vw, 11rem);
+  --section-space: clamp(6rem, 10vw, 10rem);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --font-sans: 'Outfit Variable', 'Outfit', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --font-pixel: 'Pixelify Sans', var(--font-mono);
@@ -36,7 +37,12 @@ body {
   color: var(--ink);
   background: var(--canvas);
   font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 ::selection {
@@ -71,12 +77,14 @@ a {
 }
 
 button,
-a {
+a,
+summary {
   -webkit-tap-highlight-color: transparent;
 }
 
 button:focus-visible,
-a:focus-visible {
+a:focus-visible,
+summary:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 5px;
 }
@@ -97,6 +105,7 @@ a:focus-visible {
   gap: 0.5rem;
   align-items: center;
   width: fit-content;
+  min-height: 44px;
   padding-block: 0.35rem;
   font: 500 0.74rem/1 var(--font-mono);
   letter-spacing: 0.08em;
@@ -122,6 +131,10 @@ a:focus-visible {
   transform-origin: left;
 }
 
+.text-link:active {
+  transform: translateY(1px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -135,5 +148,4 @@ a:focus-visible {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
   }
-
 }
