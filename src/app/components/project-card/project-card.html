@@ -1,90 +1,60 @@
 <article class="project">
-  <header class="project-meta">
-    <span>{{ project().category }}</span>
-    <span class="status"><i aria-hidden="true"></i>{{ project().status }}</span>
-  </header>
-
-  <div class="preview" [class]="'preview preview--' + project().preview" aria-hidden="true">
-    @switch (project().preview) {
-      @case ('thumbnail') {
-        <div class="detector-window">
-          <div class="window-bar"><i></i><i></i><i></i><span>visual_cue_scan</span></div>
-          <div class="thumbnail-scene">
-            <span class="scene-sun"></span>
-            <span class="scene-shape scene-shape--one"></span>
-            <span class="scene-shape scene-shape--two"></span>
-            <span class="scan-line"></span>
-            <span class="target-corner target-corner--a"></span>
-            <span class="target-corner target-corner--b"></span>
-          </div>
-          <div class="detector-readout">
-            <span>Texture</span><i></i><span>Edges</span><i></i><span>Artifacts</span><i></i>
-          </div>
-        </div>
-      }
-      @case ('llm') {
-        <div class="model-flow">
-          <div class="token-column">
-            <span>the</span><span>model</span><span>learns</span>
-          </div>
-          <div class="network" aria-hidden="true">
-            <i class="network-line line-a"></i><i class="network-line line-b"></i>
-            <i class="network-line line-c"></i><i class="network-line line-d"></i>
-            <span class="node node-a"></span><span class="node node-b"></span>
-            <span class="node node-c"></span><span class="node node-d"></span>
-            <span class="node node-e"></span>
-          </div>
-          <div class="prediction">
-            <small>next token</small>
-            <strong>...</strong>
-          </div>
-          <span class="flow-caption">forward &#8594; loss &#8594; backward</span>
-        </div>
-      }
-      @case ('rag') {
-        <div class="rag-flow">
-          <div class="rag-stage"><span class="doc-stack"><i></i><i></i><i></i></span><small>Documents</small></div>
-          <span class="connector"></span>
-          <div class="rag-stage"><span class="pixel-grid"><i></i><i></i><i></i><i></i></span><small>Embed</small></div>
-          <span class="connector"></span>
-          <div class="rag-stage rag-stage--active"><span class="search-mark"></span><small>Retrieve</small></div>
-          <span class="connector"></span>
-          <div class="rag-stage"><span class="context-lines"><i></i><i></i><i></i></span><small>Context</small></div>
-          <span class="connector"></span>
-          <div class="rag-stage"><span class="answer-mark">A</span><small>Answer</small></div>
-        </div>
-      }
-    }
-  </div>
-
   <div class="project-copy">
-    <h3>{{ project().title }}</h3>
+    <div class="project-meta">
+      <span>{{ project().category }}</span>
+      <span class="status"><i aria-hidden="true"></i>{{ project().status }}</span>
+    </div>
+
+    @if (project().preview === 'thumbnail') {
+      <h3>YouTube AI<br />Thumbnail <em>Detector</em></h3>
+    } @else {
+      <h3>{{ project().title }}</h3>
+    }
     <p class="description">{{ project().description }}</p>
 
     <ul class="tags" aria-label="Technologies">
-      @for (technology of project().technologies; track technology) {
-        <li>{{ technology }}</li>
-      }
+      @for (technology of project().technologies; track technology) { <li>{{ technology }}</li> }
     </ul>
 
-    <details>
-      <summary>Technical notes <span aria-hidden="true">+</span></summary>
+  </div>
+
+  <div class="project-visual" [class.project-visual--simple]="project().preview !== 'thumbnail'">
+    @if (project().preview === 'thumbnail') {
+      <p class="callout callout--top">AI likelihood score<br />shown on thumbnails<svg aria-hidden="true" viewBox="0 0 48 34"><path d="M3 2c1 15 9 24 26 25m0 0-8-7m8 7-9 3" /></svg></p>
+      <app-thumbnail-detector-demo />
+      <p class="callout callout--bottom">Analyzes the feed<br />while you browse</p>
+    } @else if (project().preview === 'llm') {
+      <div class="model-visual" aria-label="Language model flow diagram">
+        <div class="token-row"><span>the</span><span>model</span><span>learns</span></div>
+        <div class="network" aria-hidden="true"><i></i><i></i><i></i><b></b><b></b><b></b></div>
+        <div class="prediction"><small>Next token</small><strong>patterns</strong><span>72%</span></div>
+      </div>
+    } @else {
+      <div class="rag-visual" aria-label="Retrieval augmented generation flow diagram">
+        <div><span>01</span><strong>Documents</strong><small>Source knowledge</small></div>
+        <i aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M3 10h14m0 0-5-5m5 5-5 5" /></svg></i>
+        <div><span>02</span><strong>Retrieve</strong><small>Relevant context</small></div>
+        <i aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M3 10h14m0 0-5-5m5 5-5 5" /></svg></i>
+        <div><span>03</span><strong>Generate</strong><small>Grounded answer</small></div>
+      </div>
+    }
+  </div>
+
+  <div class="project-actions">
+    <details #projectNotes (toggle)="setNotesOpen(projectNotes.open)">
+      <summary>{{ notesOpen() ? (project().preview === 'thumbnail' ? 'Close case study' : 'Close project notes') : (project().preview === 'thumbnail' ? 'Read case study' : 'Project notes') }} <span aria-hidden="true">+</span></summary>
       <div class="technical-notes">
         <div><strong>Problem</strong><p>{{ project().problem }}</p></div>
         <div><strong>Approach</strong><p>{{ project().approach }}</p></div>
-        <div><strong>Current focus</strong><p>{{ project().currentFocus }}</p></div>
+        <div><strong>{{ project().technicalNoteLabel }}</strong><p>{{ project().technicalNote }}</p></div>
       </div>
     </details>
 
-    @if (project().repositoryUrl || project().demoUrl) {
-      <nav class="project-links" aria-label="Project links">
-        @if (project().repositoryUrl) {
-          <a [href]="project().repositoryUrl" target="_blank" rel="noopener noreferrer">Repository &#8599;</a>
-        }
-        @if (project().demoUrl) {
-          <a [href]="project().demoUrl" target="_blank" rel="noopener noreferrer">Live demo &#8599;</a>
-        }
-      </nav>
+    @if (project().repositoryUrl) {
+      <a class="github-link" [href]="project().repositoryUrl" target="_blank" rel="noopener noreferrer">
+        GitHub
+        <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg>
+      </a>
     }
   </div>
 </article>

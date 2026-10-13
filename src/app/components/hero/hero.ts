@@ -36,32 +36,40 @@ export class HeroComponent implements AfterViewInit, OnDestroy {
           timeline
             .fromTo(
               '.headline-line',
-              { autoAlpha: 0, yPercent: 105 },
+              { yPercent: 16 },
               {
-                autoAlpha: 1,
                 yPercent: 0,
-                duration: 0.82,
+                duration: 0.62,
                 stagger: 0.08,
                 clearProps: 'transform,opacity,visibility',
               },
             )
             .fromTo(
               '.hero-role',
-              { autoAlpha: 0, x: -18 },
-              { autoAlpha: 1, x: 0, duration: 0.5, clearProps: 'transform,opacity,visibility' },
+              { x: -12 },
+              { x: 0, duration: 0.42, clearProps: 'transform' },
               '-=0.42',
             )
             .fromTo(
-              '.hero-lower > *',
-              { autoAlpha: 0, y: 18 },
+              '.intro, .hero-actions, .current-context',
+              { y: 12 },
               {
-                autoAlpha: 1,
                 y: 0,
-                duration: 0.56,
+                duration: 0.44,
                 stagger: 0.07,
-                clearProps: 'transform,opacity,visibility',
+                clearProps: 'transform',
               },
               '-=0.3',
+            )
+            .fromTo(
+              '.hero-portrait, .hero-world',
+              { clipPath: 'inset(8% 8% 8% 8%)' },
+              {
+                clipPath: 'inset(0% 0% 0% 0%)',
+                duration: 0.52,
+                clearProps: 'clip-path',
+              },
+              '-=0.55',
             );
 
           return () => timeline.revert();

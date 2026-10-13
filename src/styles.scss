@@ -5,21 +5,21 @@
 @import '@fontsource/pixelify-sans/latin-600.css';
 
 :root {
-  --ink: #f3f1ea;
-  --muted: #aaa9a3;
-  --canvas: #0a0a0b;
-  --surface: #131315;
-  --surface-raised: #19191c;
-  --line: #303034;
-  --line-strong: #47474c;
-  --accent: #f2c84b;
-  --page-gutter: clamp(1.25rem, 4vw, 4.5rem);
-  --section-space: clamp(6rem, 10vw, 10rem);
+  --ink: #121521;
+  --muted: #65636a;
+  --canvas: #f8f6f0;
+  --surface: #fffdfa;
+  --surface-raised: #f1efe8;
+  --line: #e6e1d8;
+  --line-strong: #c9c3b8;
+  --accent: #f4c728;
+  --page-gutter: clamp(1rem, 3.25vw, 3rem);
+  --section-space: clamp(.8rem, 1.35vw, 1.05rem);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --font-sans: 'Outfit Variable', 'Outfit', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
   --font-pixel: 'Pixelify Sans', var(--font-mono);
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 * {
@@ -51,7 +51,7 @@ p {
 }
 
 * {
-  scrollbar-color: #68686d var(--canvas);
+  scrollbar-color: var(--line-strong) var(--canvas);
   scrollbar-width: thin;
 }
 
@@ -64,7 +64,7 @@ p {
 }
 
 *::-webkit-scrollbar-thumb {
-  background: #68686d;
+  background: var(--line-strong);
   border: 3px solid var(--canvas);
 }
 
@@ -90,13 +90,60 @@ summary:focus-visible {
 }
 
 .shell {
-  width: min(1440px, 100%);
+  width: min(1360px, 100%);
   margin-inline: auto;
   padding-inline: var(--page-gutter);
 }
 
 :where(section, footer)[id] {
-  scroll-margin-top: 7rem;
+  scroll-margin-top: 6rem;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  box-shadow: 0 4px 14px rgba(72, 62, 40, 0.025);
+}
+
+.panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.panel-heading h2,
+.panel-heading p {
+  margin: 0;
+}
+
+.panel-heading h2 {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+  font: 600 0.72rem/1 var(--font-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.panel-heading h2::before {
+  width: 14px;
+  height: 12px;
+  background: var(--accent);
+  border: 2px solid var(--ink);
+  border-radius: 2px;
+  box-shadow: 3px -3px 0 #fff2a9;
+  content: '';
+}
+
+.panel-heading p {
+  color: var(--muted);
+  font: 500 0.58rem/1 var(--font-mono);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .text-link {

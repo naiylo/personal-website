@@ -1,14 +1,24 @@
 <section class="work shell" id="work" aria-labelledby="work-title">
-  <div class="section-intro">
-    <app-section-heading headingId="work-title" firstLine="Selected" secondLine="work." />
-    <p>Three systems in progress, documented around the questions they are helping me answer.</p>
-  </div>
-
-  <div class="projects">
-    @for (project of projects(); track project.title) {
-      <div class="project-slot">
-        <app-project-card [project]="project" />
+  <div class="work-panel panel">
+    <header class="panel-heading">
+      <h2 id="work-title">Selected projects</h2>
+      <div class="carousel-controls">
+        <span aria-live="polite">{{ position() }}</span>
+        <button type="button" aria-label="Previous project" [disabled]="transitioning()" (click)="previous()"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M16 10H4m0 0 5-5m-5 5 5 5" /></svg></button>
+        <button type="button" aria-label="Next project" [disabled]="transitioning()" (click)="next()"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10h12m0 0-5-5m5 5-5 5" /></svg></button>
       </div>
-    }
+    </header>
+
+    <div class="project-stage">
+      @for (project of projects(); track project.title; let index = $index) {
+        <app-project-card
+          class="project-slide"
+          [class.is-active]="index === activeIndex()"
+          [project]="project"
+          [attr.aria-hidden]="index !== activeIndex()"
+          [attr.inert]="index !== activeIndex() ? '' : null"
+        />
+      }
+    </div>
   </div>
 </section>

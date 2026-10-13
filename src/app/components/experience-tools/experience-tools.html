@@ -1,33 +1,51 @@
 <section class="experience shell" id="experience" aria-labelledby="experience-title">
-  <app-section-heading headingId="experience-title" firstLine="Experience" secondLine="& expertise." />
+  <div class="panel experience-panel">
+    <header class="panel-heading">
+      <h2 id="experience-title">Experience</h2>
+      <p>My journey so far</p>
+    </header>
 
-  <div class="experience-layout">
-    <div class="timeline" aria-labelledby="work-history-title">
-      <h3 id="work-history-title">Work history</h3>
+    <div class="timeline">
       @for (item of portfolio().experience; track item.period) {
         <article>
+          <span class="org-mark" aria-hidden="true">
+            @if (item.organization === 'SAP') { SAP } @else if (item.organization.includes('GFZ')) { GFZ } @else { UP }
+          </span>
           <time>{{ item.period }}</time>
-          <div class="role">
-            <h4>{{ item.role }}</h4>
-            <p>{{ item.organization }}</p>
-          </div>
+          <h3>{{ item.role }}</h3>
+          <strong>{{ item.organization }}</strong>
           <p class="summary">{{ item.summary }}</p>
         </article>
       }
     </div>
+  </div>
 
-    <aside class="expertise" aria-labelledby="expertise-title">
-      <h3 id="expertise-title">Technical focus</h3>
-      @for (group of portfolio().skillGroups; track group.name) {
-        <section>
-          <h4>{{ group.name }}</h4>
+  <div class="panel expertise" aria-labelledby="expertise-title">
+    <header class="panel-heading">
+      <h2 id="expertise-title">Skills &amp; technical focus</h2>
+      <p>Tools I work with</p>
+    </header>
+    <div class="skill-grid">
+      @for (group of portfolio().skillGroups; track group.name; let index = $index) {
+        <article>
+          <h3>
+            <span class="skill-icon" aria-hidden="true">
+              @switch (index) {
+                @case (0) { <svg viewBox="0 0 24 24"><path d="M12 3v3m0 12v3M3 12h3m12 0h3M6.2 6.2l2.1 2.1m7.4 7.4 2.1 2.1m0-11.6-2.1 2.1m-7.4 7.4-2.1 2.1"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/></svg> }
+                @case (1) { <svg viewBox="0 0 24 24"><path d="m8 7-5 5 5 5m8-10 5 5-5 5M14 5l-4 14"/></svg> }
+                @case (2) { <svg viewBox="0 0 24 24"><path d="M4 19V9m5 10V5m5 14v-8m5 8V3M2 19h20"/></svg> }
+                @default { <svg viewBox="0 0 24 24"><path d="M14.7 6.1a5 5 0 0 0-6.6 6.6L3 17.2 6.8 21l5.1-5.1a5 5 0 0 0 6.6-6.6l-3.5 3.5-2.8-2.8 3.5-3.9Z"/></svg> }
+              }
+            </span>
+            {{ group.name }}
+          </h3>
           <ul>
             @for (skill of group.skills; track skill) {
               <li>{{ skill }}</li>
             }
           </ul>
-        </section>
+        </article>
       }
-    </aside>
+    </div>
   </div>
 </section>

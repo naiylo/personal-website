@@ -9,7 +9,8 @@ export interface Project {
   readonly preview: PreviewKind;
   readonly problem: string;
   readonly approach: string;
-  readonly currentFocus: string;
+  readonly technicalNoteLabel: string;
+  readonly technicalNote: string;
   readonly repositoryUrl?: string;
   readonly demoUrl?: string;
 }

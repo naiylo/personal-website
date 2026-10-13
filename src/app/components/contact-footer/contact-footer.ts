@@ -10,5 +10,4 @@ import { PortfolioData } from '../../models/portfolio.model';
 })
 export class ContactFooterComponent {
   readonly portfolio = input.required<PortfolioData>();
-  protected readonly year = new Date().getFullYear();
 }

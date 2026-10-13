@@ -10,7 +10,7 @@ export const PORTFOLIO: PortfolioData = {
   github: 'https://github.com/naiylo',
   linkedin: 'https://de.linkedin.com/in/oskar-schiedewitz/de',
   intro:
-    'I study Computer Science at HPI, engineer software at SAP, and build machine-learning systems from first principles.',
+    'I build practical AI systems, from research ideas to useful tools. I enjoy understanding complex problems from first principles and making the results work in the real world.',
   about: [
     'I am Oskar, a Computer Science master\'s student at HPI based in Potsdam. My focus is Data and AI, and I am especially interested in understanding machine-learning systems from first principles.',
     'I like moving between theory and implementation: learning how a system works, building it myself, and turning the result into dependable software.',
@@ -19,14 +19,16 @@ export const PORTFOLIO: PortfolioData = {
     {
       title: 'YouTube AI Thumbnail Detector',
       description:
-        'I am building a detector that analyzes YouTube thumbnails and estimates whether AI-generated imagery was used.',
-      category: 'Computer vision',
-      technologies: ['Image Analysis', 'YouTube', 'AI Detection'],
-      status: 'In development',
+        'A local Chromium extension that adds an estimated AI-likelihood score directly to YouTube thumbnails.',
+      category: 'Browser extension / ML',
+      technologies: ['Manifest V3', 'FastAPI', 'CLIP', 'PyTorch', 'scikit-learn'],
+      status: 'Complete',
       preview: 'thumbnail',
-      problem: 'Estimate whether a YouTube thumbnail contains AI-generated imagery without presenting uncertainty as fact.',
-      approach: 'Analyze visual cues in the thumbnail and return an estimate that can be inspected rather than a definitive label.',
-      currentFocus: 'Evaluating which image signals are useful and how to communicate model confidence responsibly.',
+      problem: 'Make potentially AI-generated imagery more visible while browsing without presenting a model score as fact.',
+      approach: 'A content script observes dynamically loaded thumbnails, sends their YouTube image URL to a local API, and overlays the returned likelihood score.',
+      technicalNoteLabel: 'Key decisions',
+      technicalNote: 'Keep inference local with no API key, validate remote image requests, use CLIP features with a small logistic-regression head, and label the result as an estimate because the training data is not YouTube-specific.',
+      repositoryUrl: 'https://github.com/naiylo/youtube-thumbnail-classifier',
     },
     {
       title: 'Language Model From Scratch',
@@ -38,7 +40,8 @@ export const PORTFOLIO: PortfolioData = {
       preview: 'llm',
       problem: 'Understand language models beyond the API layer by implementing the mechanics that make training possible.',
       approach: 'Build forward and backward propagation, train on real text, and expose the resulting model through a small chat companion.',
-      currentFocus: 'Studying gradient flow, training behavior, and the relationship between architecture and generated text.',
+      technicalNoteLabel: 'Current focus',
+      technicalNote: 'Studying gradient flow, training behavior, and the relationship between architecture and generated text.',
     },
     {
       title: 'RAG System',
@@ -50,7 +53,8 @@ export const PORTFOLIO: PortfolioData = {
       preview: 'rag',
       problem: 'Understand how external knowledge becomes usable context for a language model.',
       approach: 'Build retrieval, context selection, and response generation as explicit stages that can be inspected independently.',
-      currentFocus: 'Making the retrieval path observable so context quality can be evaluated separately from generation.',
+      technicalNoteLabel: 'Current focus',
+      technicalNote: 'Making the retrieval path observable so context quality can be evaluated separately from generation.',
     },
   ],
   skillGroups: [
@@ -61,6 +65,10 @@ export const PORTFOLIO: PortfolioData = {
     {
       name: 'Software Engineering',
       skills: ['Java', 'Spring Boot', 'Angular', 'TypeScript', 'APIs'],
+    },
+    {
+      name: 'Data & Research',
+      skills: ['scikit-learn', 'CLIP', 'Computer vision', 'LiDAR', 'Data analysis', 'Research'],
     },
     {
       name: 'Engineering Tools',
