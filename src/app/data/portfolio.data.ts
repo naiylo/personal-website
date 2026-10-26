@@ -28,33 +28,50 @@ export const PORTFOLIO: PortfolioData = {
       approach: 'A content script observes dynamically loaded thumbnails, sends their YouTube image URL to a local API, and overlays the returned likelihood score.',
       technicalNoteLabel: 'Key decisions',
       technicalNote: 'Keep inference local with no API key, validate remote image requests, use CLIP features with a small logistic-regression head, and label the result as an estimate because the training data is not YouTube-specific.',
+      architecture: ['YouTube DOM observer', 'FastAPI inference service', 'CLIP embeddings', 'Likelihood overlay'],
+      decisions: [
+        {
+          title: 'Local inference',
+          detail: 'The extension calls a service on the user\'s machine. Images and predictions stay local, and no paid API key is required.',
+        },
+        {
+          title: 'Small classification head',
+          detail: 'CLIP provides reusable image features while logistic regression keeps training, inspection, and iteration lightweight.',
+        },
+        {
+          title: 'Uncertainty in the interface',
+          detail: 'The overlay presents an estimated likelihood rather than a definitive label because the dataset does not mirror every YouTube thumbnail.',
+        },
+      ],
       repositoryUrl: 'https://github.com/naiylo/youtube-thumbnail-classifier',
     },
     {
-      title: 'Language Model From Scratch',
+      title: 'Local AI Personal Assistant',
       description:
-        'I am implementing a small language model, including forward and backward propagation, and training it on real text data as a chat companion.',
-      category: 'Deep learning',
-      technologies: ['Neural Networks', 'From Scratch', 'Real Data'],
+        'A private assistant that runs on my laptop, answers over Wi-Fi, and uses my documents as context for useful day-to-day tasks.',
+      category: 'Local AI / RAG',
+      technologies: ['Local LLM', 'FastAPI', 'RAG', 'Vector Search', 'Python'],
       status: 'In development',
-      preview: 'llm',
-      problem: 'Understand language models beyond the API layer by implementing the mechanics that make training possible.',
-      approach: 'Build forward and backward propagation, train on real text, and expose the resulting model through a small chat companion.',
-      technicalNoteLabel: 'Current focus',
-      technicalNote: 'Studying gradient flow, training behavior, and the relationship between architecture and generated text.',
-    },
-    {
-      title: 'RAG System',
-      description:
-        'I am building a retrieval-augmented generation system to understand how retrieval, context selection, and generation work together.',
-      category: 'Retrieval / LLMs',
-      technologies: ['RAG', 'Retrieval', 'LLMs'],
-      status: 'In development',
-      preview: 'rag',
-      problem: 'Understand how external knowledge becomes usable context for a language model.',
-      approach: 'Build retrieval, context selection, and response generation as explicit stages that can be inspected independently.',
-      technicalNoteLabel: 'Current focus',
-      technicalNote: 'Making the retrieval path observable so context quality can be evaluated separately from generation.',
+      preview: 'assistant',
+      problem: 'Create a useful assistant without sending personal documents or routine requests to a hosted model provider.',
+      approach: 'Run inference on the laptop, expose a small FastAPI service to trusted devices on the local network, and retrieve relevant document chunks before generation.',
+      technicalNoteLabel: 'System boundary',
+      technicalNote: 'The laptop remains the compute and data boundary. Wi-Fi clients send requests to the API, while retrieval, prompt assembly, and model inference stay on the host.',
+      architecture: ['Phone or laptop', 'FastAPI on local Wi-Fi', 'Document retrieval', 'Local model and tools'],
+      decisions: [
+        {
+          title: 'Laptop as the server',
+          detail: 'One machine owns the model and document index. Other trusted devices only need a browser or lightweight client on the same network.',
+        },
+        {
+          title: 'Retrieval before generation',
+          detail: 'Documents are chunked, embedded, and searched first. Only relevant passages are added to the prompt, keeping context focused and traceable.',
+        },
+        {
+          title: 'Explicit task boundary',
+          detail: 'FastAPI routes separate chat, retrieval, and task actions so each capability can be tested, secured, and extended independently.',
+        },
+      ],
     },
   ],
   skillGroups: [

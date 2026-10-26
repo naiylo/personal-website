@@ -1,4 +1,9 @@
-export type PreviewKind = 'thumbnail' | 'llm' | 'rag';
+export type PreviewKind = 'thumbnail' | 'assistant';
+
+export interface TechnicalDecision {
+  readonly title: string;
+  readonly detail: string;
+}
 
 export interface Project {
   readonly title: string;
@@ -11,6 +16,8 @@ export interface Project {
   readonly approach: string;
   readonly technicalNoteLabel: string;
   readonly technicalNote: string;
+  readonly architecture: readonly string[];
+  readonly decisions: readonly TechnicalDecision[];
   readonly repositoryUrl?: string;
   readonly demoUrl?: string;
 }

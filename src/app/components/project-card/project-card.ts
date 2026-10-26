@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 
 import { Project } from '../../models/portfolio.model';
-import { ScrollTrigger } from '../../motion/gsap';
 import { ThumbnailDetectorDemoComponent } from '../thumbnail-detector-demo/thumbnail-detector-demo';
 
 @Component({
@@ -13,10 +12,4 @@ import { ThumbnailDetectorDemoComponent } from '../thumbnail-detector-demo/thumb
 })
 export class ProjectCardComponent {
   readonly project = input.required<Project>();
-  protected readonly notesOpen = signal(false);
-
-  protected setNotesOpen(open: boolean): void {
-    this.notesOpen.set(open);
-    requestAnimationFrame(() => ScrollTrigger.refresh());
-  }
 }

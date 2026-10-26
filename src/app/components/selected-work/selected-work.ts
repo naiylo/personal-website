@@ -1,7 +1,16 @@
-import { ChangeDetectionStrategy, Component, ElementRef, NgZone, OnDestroy, computed, inject, input, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  NgZone,
+  OnDestroy,
+  inject,
+  input,
+} from '@angular/core';
 
 import { Project } from '../../models/portfolio.model';
-import { gsap } from '../../motion/gsap';
+import { gsap, motionPreference } from '../../motion/gsap';
 import { ProjectCardComponent } from '../project-card/project-card';
 
 @Component({
@@ -11,77 +20,48 @@ import { ProjectCardComponent } from '../project-card/project-card';
   styleUrl: './selected-work.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectedWorkComponent implements OnDestroy {
+export class SelectedWorkComponent implements AfterViewInit, OnDestroy {
   readonly projects = input.required<readonly Project[]>();
-  protected readonly transitioning = signal(false);
-  protected readonly activeIndex = signal(0);
-  protected readonly position = computed(() => {
-    const current = String(this.activeIndex() + 1).padStart(2, '0');
-    const total = String(this.projects().length).padStart(2, '0');
-    return `${current} / ${total}`;
-  });
+
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly zone = inject(NgZone);
-  private transitionTimeline?: ReturnType<typeof gsap.timeline>;
-  private entranceTween?: ReturnType<typeof gsap.to>;
+  private motion?: ReturnType<typeof gsap.matchMedia>;
 
-  protected previous(): void {
-    this.switchProject(-1);
-  }
-
-  protected next(): void {
-    this.switchProject(1);
-  }
-
-  private switchProject(direction: -1 | 1): void {
-    const count = this.projects().length;
-    if (count < 1 || this.transitioning()) return;
-
-    const nextIndex = (this.activeIndex() + direction + count) % count;
-    const cards = this.host.nativeElement.querySelectorAll<HTMLElement>('.project-slide');
-    const currentCard = cards[this.activeIndex()];
-    const nextCard = cards[nextIndex];
-    if (!currentCard || !nextCard || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      this.activeIndex.set(nextIndex);
-      return;
-    }
-
-    this.transitioning.set(true);
+  ngAfterViewInit(): void {
     this.zone.runOutsideAngular(() => {
-      gsap.set(nextCard, { autoAlpha: 0, y: 14 });
-      this.transitionTimeline = gsap.timeline({
-        onComplete: () => {
-          currentCard.querySelector('details[open]')?.removeAttribute('open');
-          this.zone.run(() => this.activeIndex.set(nextIndex));
+      this.motion = gsap.matchMedia();
+      this.motion.add(
+        motionPreference,
+        () => {
+          const entries = gsap.utils.toArray<HTMLElement>('.project-entry', this.host.nativeElement);
 
-          requestAnimationFrame(() => {
-            gsap.set(currentCard, { clearProps: 'all' });
-            this.entranceTween = gsap.to(
-              nextCard,
-              {
-                autoAlpha: 1,
-                y: 0,
-                duration: 0.36,
-                ease: 'power3.out',
-                clearProps: 'all',
-                onComplete: () => this.zone.run(() => this.transitioning.set(false)),
+          entries.forEach((entry) => {
+            const copy = entry.querySelector('.project-copy');
+            const visual = entry.querySelector('.project-visual');
+            const architecture = entry.querySelector('.architecture');
+            const caseStudy = entry.querySelector('.case-study');
+
+            gsap.timeline({
+              defaults: { duration: 0.62, ease: 'power3.out' },
+              scrollTrigger: {
+                trigger: entry,
+                start: 'top 82%',
+                end: 'top 38%',
+                toggleActions: 'play none none reverse',
               },
-            );
+            })
+              .fromTo(copy, { x: -24, autoAlpha: 0 }, { x: 0, autoAlpha: 1, clearProps: 'transform,opacity,visibility' })
+              .fromTo(visual, { x: 24, clipPath: 'inset(2% 3% 2% 3%)' }, { x: 0, clipPath: 'inset(0% 0% 0% 0%)', clearProps: 'transform,clip-path' }, '<.08')
+              .fromTo(architecture, { scaleX: 0.96, autoAlpha: 0 }, { scaleX: 1, autoAlpha: 1, clearProps: 'transform,opacity,visibility' }, '-=.28')
+              .fromTo(caseStudy, { y: 18, autoAlpha: 0 }, { y: 0, autoAlpha: 1, clearProps: 'transform,opacity,visibility' }, '-=.32');
           });
         },
-      });
-
-      this.transitionTimeline.to(currentCard, {
-        autoAlpha: 0,
-        x: direction * 18,
-        duration: 0.2,
-        ease: 'power2.in',
-      });
+        this.host.nativeElement,
+      );
     });
   }
 
   ngOnDestroy(): void {
-    this.transitionTimeline?.kill();
-    this.entranceTween?.kill();
+    this.motion?.revert();
   }
 }

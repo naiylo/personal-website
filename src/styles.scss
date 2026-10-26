@@ -1,25 +1,31 @@
 @import '@fontsource-variable/outfit/wght.css';
 @import '@fontsource/jetbrains-mono/latin-400.css';
 @import '@fontsource/jetbrains-mono/latin-500.css';
-@import '@fontsource/pixelify-sans/latin-500.css';
-@import '@fontsource/pixelify-sans/latin-600.css';
 
 :root {
-  --ink: #121521;
-  --muted: #65636a;
-  --canvas: #f8f6f0;
-  --surface: #fffdfa;
-  --surface-raised: #f1efe8;
-  --line: #e6e1d8;
-  --line-strong: #c9c3b8;
-  --accent: #f4c728;
+  --ink: #f3f2ed;
+  --muted: #a9abb3;
+  --canvas: #0b0d12;
+  --surface: #12151c;
+  --surface-raised: #181c24;
+  --surface-soft: #202631;
+  --surface-blue: #172230;
+  --surface-gold: #2a2518;
+  --surface-green: #19251f;
+  --line: #252a35;
+  --line-strong: #3a4250;
+  --accent: #e7c447;
+  --accent-ink: #17150b;
+  --accent-soft: #332d18;
+  --radius-surface: 22px;
+  --radius-card: 16px;
+  --radius-control: 12px;
   --page-gutter: clamp(1rem, 3.25vw, 3rem);
-  --section-space: clamp(.8rem, 1.35vw, 1.05rem);
+  --section-space: clamp(1rem, 2vw, 1.5rem);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --font-sans: 'Outfit Variable', 'Outfit', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --font-pixel: 'Pixelify Sans', var(--font-mono);
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 * {
@@ -46,7 +52,7 @@ p {
 }
 
 ::selection {
-  color: var(--canvas);
+  color: var(--accent-ink);
   background: var(--accent);
 }
 
@@ -74,6 +80,7 @@ p {
 
 a {
   color: inherit;
+  text-underline-offset: 0.18em;
 }
 
 button,
@@ -102,16 +109,15 @@ summary:focus-visible {
 .panel {
   background: var(--surface);
   border: 1px solid var(--line);
-  border-radius: 13px;
-  box-shadow: 0 4px 14px rgba(72, 62, 40, 0.025);
+  border-radius: var(--radius-surface);
 }
 
 .panel-heading {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 48px;
-  padding: 0.75rem 1.25rem;
+  min-height: 56px;
+  padding: 0.85rem 1.35rem;
   border-bottom: 1px solid var(--line);
 }
 
@@ -124,7 +130,7 @@ summary:focus-visible {
   display: flex;
   gap: 0.65rem;
   align-items: center;
-  font: 600 0.72rem/1 var(--font-mono);
+  font: 600 0.78rem/1 var(--font-mono);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -134,14 +140,13 @@ summary:focus-visible {
   height: 12px;
   background: var(--accent);
   border: 2px solid var(--ink);
-  border-radius: 2px;
-  box-shadow: 3px -3px 0 #fff2a9;
+  border-radius: 5px;
   content: '';
 }
 
 .panel-heading p {
   color: var(--muted);
-  font: 500 0.58rem/1 var(--font-mono);
+  font: 500 0.66rem/1 var(--font-mono);
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }

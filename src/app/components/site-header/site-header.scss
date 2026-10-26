@@ -1,9 +1,12 @@
 :host {
   position: sticky;
   z-index: 20;
-  top: 0.75rem;
+  top: 0;
   display: block;
-  padding-top: 0.75rem;
+  background: color-mix(in srgb, var(--canvas), transparent 10%);
+  border-bottom: 1px solid color-mix(in srgb, var(--line), transparent 20%);
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
 }
 
 .header {
@@ -12,9 +15,10 @@
   gap: clamp(1rem, 2vw, 2rem);
   align-items: center;
   min-height: 58px;
-  padding-inline: clamp(1rem, 1.6vw, 1.5rem);
-  background: color-mix(in srgb, var(--surface), transparent 2%);
-  box-shadow: 0 8px 24px rgba(72, 62, 40, 0.06);
+  padding-inline: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
 }
 
 .brand,
@@ -23,7 +27,7 @@ nav a {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-  font: 500 0.7rem/1 var(--font-mono);
+  font: 500 0.73rem/1 var(--font-mono);
   letter-spacing: 0.07em;
   text-decoration: none;
   text-transform: uppercase;
@@ -36,16 +40,22 @@ nav a {
 }
 
 .brand i {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   background: var(--accent);
+  border-radius: 50%;
 }
 
 nav {
   display: flex;
   min-width: 0;
-  gap: clamp(1.1rem, 2.5vw, 2.2rem);
+  gap: clamp(1.1rem, 2.6vw, 2.2rem);
   justify-self: center;
+}
+
+nav a {
+  position: relative;
+  padding-inline: .15rem;
 }
 
 nav a,
@@ -59,8 +69,16 @@ nav a:hover,
   color: var(--ink);
 }
 
+nav a:hover {
+  color: var(--accent);
+}
+
 .github {
   gap: 0.55rem;
+  min-height: 38px;
+  padding-inline: .8rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-control);
   justify-self: end;
 }
 
@@ -85,12 +103,18 @@ nav a:hover,
     grid-column: 1 / -1;
     justify-self: stretch;
     gap: 0;
+    margin-block: .2rem .65rem;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
     justify-content: space-between;
     overflow-x: auto;
   }
 
   nav a {
-    font-size: 0.62rem;
+    padding-inline: .35rem;
+    font-size: 0.66rem;
     white-space: nowrap;
   }
 }

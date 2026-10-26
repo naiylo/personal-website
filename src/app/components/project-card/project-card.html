@@ -1,60 +1,65 @@
 <article class="project">
-  <div class="project-copy">
+  <header class="project-copy">
     <div class="project-meta">
       <span>{{ project().category }}</span>
-      <span class="status"><i aria-hidden="true"></i>{{ project().status }}</span>
     </div>
 
-    @if (project().preview === 'thumbnail') {
-      <h3>YouTube AI<br />Thumbnail <em>Detector</em></h3>
-    } @else {
-      <h3>{{ project().title }}</h3>
-    }
+    <h3>{{ project().title }}</h3>
     <p class="description">{{ project().description }}</p>
 
     <ul class="tags" aria-label="Technologies">
       @for (technology of project().technologies; track technology) { <li>{{ technology }}</li> }
     </ul>
+    <div class="project-links">
+      <span class="status">{{ project().status }}</span>
+      @if (project().repositoryUrl) {
+        <a class="github-link" [href]="project().repositoryUrl" target="_blank" rel="noopener noreferrer">
+          View code
+          <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg>
+        </a>
+      }
+    </div>
+  </header>
 
-  </div>
-
-  <div class="project-visual" [class.project-visual--simple]="project().preview !== 'thumbnail'">
+  <div class="project-visual">
     @if (project().preview === 'thumbnail') {
-      <p class="callout callout--top">AI likelihood score<br />shown on thumbnails<svg aria-hidden="true" viewBox="0 0 48 34"><path d="M3 2c1 15 9 24 26 25m0 0-8-7m8 7-9 3" /></svg></p>
       <app-thumbnail-detector-demo />
-      <p class="callout callout--bottom">Analyzes the feed<br />while you browse</p>
-    } @else if (project().preview === 'llm') {
-      <div class="model-visual" aria-label="Language model flow diagram">
-        <div class="token-row"><span>the</span><span>model</span><span>learns</span></div>
-        <div class="network" aria-hidden="true"><i></i><i></i><i></i><b></b><b></b><b></b></div>
-        <div class="prediction"><small>Next token</small><strong>patterns</strong><span>72%</span></div>
-      </div>
     } @else {
-      <div class="rag-visual" aria-label="Retrieval augmented generation flow diagram">
-        <div><span>01</span><strong>Documents</strong><small>Source knowledge</small></div>
-        <i aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M3 10h14m0 0-5-5m5 5-5 5" /></svg></i>
-        <div><span>02</span><strong>Retrieve</strong><small>Relevant context</small></div>
-        <i aria-hidden="true"><svg viewBox="0 0 20 20"><path d="M3 10h14m0 0-5-5m5 5-5 5" /></svg></i>
-        <div><span>03</span><strong>Generate</strong><small>Grounded answer</small></div>
+      <div class="assistant-map" aria-label="Local assistant architecture">
+        <div class="assistant-core">
+          <span>Runs on laptop</span>
+          <strong>Local assistant</strong>
+          <code>POST /ask</code>
+        </div>
+        <div class="assistant-capabilities">
+          <div><strong>Private by default</strong><span>Model and files stay on the host</span></div>
+          <div><strong>Available over Wi-Fi</strong><span>Trusted devices call the local API</span></div>
+          <div><strong>Grounded in documents</strong><span>Retrieved passages support each answer</span></div>
+        </div>
       </div>
     }
   </div>
 
-  <div class="project-actions">
-    <details #projectNotes (toggle)="setNotesOpen(projectNotes.open)">
-      <summary>{{ notesOpen() ? (project().preview === 'thumbnail' ? 'Close case study' : 'Close project notes') : (project().preview === 'thumbnail' ? 'Read case study' : 'Project notes') }} <span aria-hidden="true">+</span></summary>
-      <div class="technical-notes">
-        <div><strong>Problem</strong><p>{{ project().problem }}</p></div>
-        <div><strong>Approach</strong><p>{{ project().approach }}</p></div>
-        <div><strong>{{ project().technicalNoteLabel }}</strong><p>{{ project().technicalNote }}</p></div>
-      </div>
-    </details>
-
-    @if (project().repositoryUrl) {
-      <a class="github-link" [href]="project().repositoryUrl" target="_blank" rel="noopener noreferrer">
-        GitHub
-        <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg>
-      </a>
+  <div class="architecture" aria-label="System architecture">
+    @for (step of project().architecture; track step) {
+      <div class="architecture-step"><span>{{ $index + 1 }}</span><strong>{{ step }}</strong></div>
     }
   </div>
+
+  <section class="case-study" [attr.aria-label]="project().title + ' technical decisions'">
+    <div class="case-context">
+      <div><strong>Problem</strong><p>{{ project().problem }}</p></div>
+      <div><strong>Approach</strong><p>{{ project().approach }}</p></div>
+      <div><strong>{{ project().technicalNoteLabel }}</strong><p>{{ project().technicalNote }}</p></div>
+    </div>
+
+    <div class="decision-list">
+      @for (decision of project().decisions; track decision.title) {
+        <article>
+          <h4>{{ decision.title }}</h4>
+          <p>{{ decision.detail }}</p>
+        </article>
+      }
+    </div>
+  </section>
 </article>

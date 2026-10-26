@@ -1,53 +1,41 @@
 <section class="hero shell" id="top" aria-labelledby="hero-title">
   <div class="hero-copy" id="about">
-    <p class="hello"><i aria-hidden="true"></i>Hello there!</p>
-    <h1 id="hero-title" class="line-mask"><span class="headline-line">Hi, I’m Oskar<span>.</span></span></h1>
-    <p class="hero-role">Machine Learning &amp; AI Engineer</p>
-    <p class="intro">{{ portfolio().intro }}</p>
+    <h1 id="hero-title" class="line-mask"><span class="headline-line">AI systems that work<span>.</span></span></h1>
+    <p class="intro">I’m Oskar, an AI engineer building useful, local-first software from model to interface.</p>
 
     <div class="hero-actions">
       <a class="primary-action" href="#work">View my work <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg></a>
       <a class="secondary-action" [href]="'mailto:' + portfolio().email">Get in touch</a>
     </div>
-
-    <p class="current-context">Currently: <strong>SAP Software &amp; AI</strong> · <strong>HPI M.Sc.</strong> · <strong>University of Potsdam B.Sc.</strong></p>
   </div>
 
-  <div class="hero-portrait" aria-label="Portrait placeholder">
-    <div class="pixel-corners" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-    <div class="portrait-placeholder">
-      <span class="portrait-head" aria-hidden="true"></span>
-      <span class="portrait-body" aria-hidden="true"></span>
-      <strong>Add portrait</strong>
+  <aside class="project-stage" aria-label="Project previews">
+    <div class="stage-heading">
+      <h2>Small previews. Real systems.</h2>
+      <a href="#work">Open the technical decisions</a>
     </div>
-    <p class="building-note">Building<br />with AI <svg aria-hidden="true" viewBox="0 0 16 16"><path d="M4 12 12 4M5 4h7v7" /></svg></p>
-    <p class="idea-note">Ideas<br />Models<br />Products<br />People</p>
-  </div>
 
-  <div class="hero-world" aria-label="Pixel art mountain landscape">
-    <p class="curiosity-note">Same curiosity.<br />Different problems.</p>
-    <svg class="landscape" role="img" aria-labelledby="landscape-title" viewBox="0 0 420 210" shape-rendering="crispEdges">
-      <title id="landscape-title">A quiet pixel-art mountain landscape</title>
-      <rect x="310" y="22" width="22" height="22" fill="#f4c728" />
-      <path d="M0 130h24v-18h22V92h23V76h20v16h22v20h24v-14h23V74h22V52h20v18h20v20h22v-13h22V60h20v18h22v20h22v16h23v18H0Z" fill="#d4e5eb" />
-      <path d="M0 130h24v-18h22V92h23V76h20v16h22v20h24v-14h23V74h23v18h-19v16h-23v14h-23v16h-23v-9h-22v-9H80v-8H57v12H35v10H0Z" fill="#b7d0db" />
-      <path d="M154 118h23V98h22V76h20v18h20v20h22v14h-22v10h-24v-9h-19v9h-20v-9h-22Z" fill="#aec9d5" />
-      <path d="M0 151h28v-8h26v8h29v-9h24v9h29v-7h20v7h28v-9h25v9h33v-8h25v8h31v-7h26v7h36v59H0Z" fill="#dfe7cb" />
-      <path d="M40 210c32-14 55-25 84-28 29-3 44 5 72 4 31-1 45-13 77-10 26 2 48 13 75 13 24 0 44-7 72-16v37Z" fill="#ece1bd" />
-      <path d="M165 210c18-9 30-17 49-20 17-3 31 0 46 5 15 5 27 9 44 8 13-1 26-4 41-9v16Z" fill="#b8d7df" />
-      <g fill="#52766b">
-        <path d="M24 152h8v-18h8v-8h-5v-9h-6v-8h-5v8h-6v9h-5v8h11Z" />
-        <path d="M88 153h7v-15h7v-8h-5v-8h-5v-8h-5v8h-6v8h-5v8h12Z" />
-        <path d="M300 153h8v-18h8v-8h-5v-9h-6v-8h-5v8h-6v9h-5v8h11Z" />
-        <path d="M370 153h8v-18h8v-8h-5v-9h-6v-8h-5v8h-6v9h-5v8h11Z" />
-      </g>
-      <g fill="#8ba889">
-        <path d="M50 152h6v-13h6v-7h-4v-7h-4v-6h-4v6h-5v7h-4v7h9Z" />
-        <path d="M344 153h6v-13h6v-7h-4v-7h-4v-6h-4v6h-5v7h-4v7h9Z" />
-      </g>
-      <g fill="#4e5c50"><rect x="26" y="143" width="4" height="14"/><rect x="91" y="143" width="4" height="14"/><rect x="302" y="143" width="4" height="14"/><rect x="372" y="143" width="4" height="14"/><rect x="52" y="143" width="3" height="13"/><rect x="346" y="143" width="3" height="13"/></g>
-      <g fill="#849c74"><rect x="8" y="166" width="7" height="7"/><rect x="32" y="176" width="5" height="5"/><rect x="118" y="161" width="6" height="6"/><rect x="270" y="168" width="7" height="7"/><rect x="388" y="165" width="6" height="6"/></g>
-    </svg>
-    <div class="pixel-spark" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-  </div>
+    <div class="project-loop">
+      <article class="project-glimpse glimpse-detector">
+        <div class="glimpse-meta"><strong>YouTube AI Thumbnail Detector</strong><span>Browser extension + local ML</span></div>
+        <div class="detector-fragment" aria-label="A crop from the thumbnail detector project">
+          <img src="youtube-thumbnail-detector.png" alt="YouTube thumbnails used by the local AI detector" width="1709" height="327" />
+          <i class="preview-scan" aria-hidden="true"></i>
+        </div>
+        <div class="glimpse-footer"><span>CLIP features</span><span>FastAPI</span><code>estimate, not verdict</code></div>
+        <i class="loop-timer" aria-hidden="true"></i>
+      </article>
+
+      <article class="project-glimpse glimpse-assistant">
+        <div class="glimpse-meta"><strong>Local AI Personal Assistant</strong><span>Private RAG over Wi-Fi</span></div>
+        <div class="assistant-fragment" aria-label="Local assistant request path">
+          <div><small>Trusted device</small><strong>What did I save about RAG?</strong></div>
+          <span aria-hidden="true"><i></i></span>
+          <div><small>Laptop</small><strong>Retrieve docs, then answer</strong><code>POST /ask</code></div>
+        </div>
+        <p class="insider-line">It works on my machine. Conveniently, the machine is the server.</p>
+        <i class="loop-timer" aria-hidden="true"></i>
+      </article>
+    </div>
+  </aside>
 </section>

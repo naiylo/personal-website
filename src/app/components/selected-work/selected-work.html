@@ -2,21 +2,14 @@
   <div class="work-panel panel">
     <header class="panel-heading">
       <h2 id="work-title">Selected projects</h2>
-      <div class="carousel-controls">
-        <span aria-live="polite">{{ position() }}</span>
-        <button type="button" aria-label="Previous project" [disabled]="transitioning()" (click)="previous()"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M16 10H4m0 0 5-5m-5 5 5 5" /></svg></button>
-        <button type="button" aria-label="Next project" [disabled]="transitioning()" (click)="next()"><svg aria-hidden="true" viewBox="0 0 20 20"><path d="M4 10h12m0 0-5-5m5 5-5 5" /></svg></button>
-      </div>
+      <p>Architecture, tradeoffs, and implementation</p>
     </header>
 
-    <div class="project-stage">
-      @for (project of projects(); track project.title; let index = $index) {
+    <div class="project-list">
+      @for (project of projects(); track project.title) {
         <app-project-card
-          class="project-slide"
-          [class.is-active]="index === activeIndex()"
+          class="project-entry"
           [project]="project"
-          [attr.aria-hidden]="index !== activeIndex()"
-          [attr.inert]="index !== activeIndex() ? '' : null"
         />
       }
     </div>
