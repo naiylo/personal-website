@@ -1,25 +1,21 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { PORTFOLIO } from './data/portfolio.data';
-import { ContactFooterComponent } from './components/contact-footer/contact-footer';
-import { ExperienceToolsComponent } from './components/experience-tools/experience-tools';
-import { HeroComponent } from './components/hero/hero';
-import { SelectedWorkComponent } from './components/selected-work/selected-work';
-import { SiteHeaderComponent } from './components/site-header/site-header';
 
 @Component({
   selector: 'app-root',
-  imports: [
-    SiteHeaderComponent,
-    HeroComponent,
-    SelectedWorkComponent,
-    ExperienceToolsComponent,
-    ContactFooterComponent,
-  ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
   protected readonly portfolio = PORTFOLIO;
+  protected readonly currentYear = new Date().getFullYear();
+  protected readonly detectorScores = ['88%', '54%', '67%', '70%'];
+  protected readonly skillDescriptions = [
+    'Models, retrieval, and computer vision built with attention to how results reach people.',
+    'Production-minded APIs and interfaces that turn experiments into usable software.',
+    'Research translated into reproducible pipelines, measurements, and working tools.',
+    'The delivery layer: version control, CI/CD, automation, and maintainable workflows.',
+  ];
 }

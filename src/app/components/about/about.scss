@@ -1,0 +1,30 @@
+:host { display:block; }
+.about { margin-top:var(--section-space); }
+.about-panel { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr); overflow:hidden; }
+.about-copy { display:grid; gap:clamp(1.4rem,3vw,2.2rem); padding:clamp(2rem,5vw,4.5rem); align-content:center; }
+h2 { max-width:18ch; margin:0; font-size:clamp(2.25rem,4.8vw,4.8rem); font-weight:660; line-height:.98; letter-spacing:-.04em; text-wrap:balance; }
+.about-text { display:grid; gap:.85rem; max-width:66ch; }
+.about-text p { margin:0; color:var(--muted); font-size:clamp(.96rem,1.15vw,1.08rem); line-height:1.65; }
+.about-details { display:grid; grid-template-rows:auto 1fr; min-width:0; background:var(--surface-blue); border-left:1px solid var(--line); }
+.location { display:flex; gap:.9rem; align-items:center; padding:1.35rem; border-bottom:1px solid var(--line); }
+.location > span { flex:none; width:12px; height:12px; background:var(--accent); border:3px solid var(--surface-blue); border-radius:50%; outline:1px solid var(--accent); }
+.location div { display:grid; gap:.28rem; }
+small,time,.education h3 { color:var(--muted); font:500 .64rem/1.35 var(--font-mono); letter-spacing:.05em; text-transform:uppercase; }
+.location strong { font-size:.95rem; font-weight:620; }
+.education { display:grid; padding:0 1.35rem; align-content:center; }
+.education h3 { margin:0; padding:1.2rem 0 .5rem; color:var(--accent); }
+.education article { display:grid; grid-template-columns:7rem 1fr; gap:.25rem 1rem; padding:1.15rem 0; }
+.education article + article { border-top:1px solid var(--line); }
+.education time { grid-row:1 / span 3; }
+.education strong { font-size:.98rem; line-height:1.25; }
+.education article > span { color:var(--ink); font-size:.82rem; }
+.education p { margin:.25rem 0 0; color:var(--muted); font-size:.76rem; line-height:1.45; }
+@media (max-width:900px) {
+  .about-panel { grid-template-columns:1fr; }
+  .about-details { border-top:1px solid var(--line); border-left:0; }
+}
+@media (max-width:520px) {
+  .about-copy { padding:2rem 1rem; }
+  .education article { grid-template-columns:1fr; }
+  .education time { grid-row:auto; }
+}

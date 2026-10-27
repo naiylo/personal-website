@@ -1,0 +1,35 @@
+<section class="about shell" id="about" aria-labelledby="about-title">
+  <div class="about-panel panel">
+    <div class="about-copy">
+      <h2 id="about-title">I learn systems from the inside out—then make them useful.</h2>
+      <div class="about-text">
+        @for (paragraph of portfolio().about; track paragraph) {
+          <p>{{ paragraph }}</p>
+        }
+      </div>
+      <a class="text-link" [href]="'mailto:' + portfolio().email">Start a conversation</a>
+    </div>
+
+    <aside class="about-details" aria-label="Location and education">
+      <div class="location">
+        <span aria-hidden="true"></span>
+        <div>
+          <small>Based in</small>
+          <strong>{{ portfolio().location }}</strong>
+        </div>
+      </div>
+
+      <div class="education">
+        <h3>Education</h3>
+        @for (item of portfolio().education; track item.period) {
+          <article>
+            <time>{{ item.period }}</time>
+            <strong>{{ item.degree }}</strong>
+            <span>{{ item.institution }}</span>
+            <p>{{ item.detail }}</p>
+          </article>
+        }
+      </div>
+    </aside>
+  </div>
+</section>

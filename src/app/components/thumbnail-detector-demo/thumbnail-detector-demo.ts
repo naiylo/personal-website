@@ -39,6 +39,9 @@ interface DemoThumbnail {
                   @if (activeFrame() === index && analyzing()) {
                     <i class="scan-line" aria-hidden="true"></i>
                   }
+                  @if (activeFrame() >= index) {
+                    <strong class="score-badge"><span>AI estimate</span>{{ tile.score }}</strong>
+                  }
                 </div>
                 <div class="metadata" aria-hidden="true"><i></i><i></i></div>
               </article>
@@ -78,6 +81,8 @@ interface DemoThumbnail {
     .thumbnail-crop { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--surface-soft); border-radius: 10px; }
     article.is-active .thumbnail-crop { outline: 2px solid var(--accent); outline-offset: 2px; }
     .thumbnail-crop img { position: absolute; top: 0; left: calc(var(--segment) * -105% - 4%); width: 420%; max-width: none; height: auto; }
+    .score-badge { position:absolute; z-index:3; right:.35rem; bottom:.35rem; display:grid; gap:.08rem; min-width:3.7rem; padding:.38rem .45rem; color:var(--accent-ink); background:var(--accent); border-radius:8px; font:700 .72rem/1 var(--font-mono); font-variant-numeric:tabular-nums; box-shadow:0 7px 18px rgba(11,13,18,.34); }
+    .score-badge span { font-size:.42rem; font-weight:600; letter-spacing:.02em; text-transform:uppercase; }
     .scan-line { position: absolute; z-index: 2; inset: 0 0 auto; height: 2px; background: var(--accent); box-shadow: 0 3px 10px rgba(244, 199, 40, .55); animation: scan 260ms steps(3) forwards; }
     .metadata { display: grid; gap: .2rem; margin-top: .25rem; }
     .metadata i { width: 72%; height: 3px; background: var(--line-strong); border-radius: 999px; }
@@ -93,6 +98,7 @@ interface DemoThumbnail {
       nav i { width: 10px; height: 10px; }
       .feed { padding: .7rem; }
       .thumbnail-grid { gap: .5rem; }
+      .score-badge { right:.25rem; bottom:.25rem; min-width:3.2rem; padding:.3rem .35rem; font-size:.64rem; }
     }
     @media (prefers-reduced-motion: reduce) {
       article { transition: none; }

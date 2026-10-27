@@ -1,11 +1,129 @@
 <a class="skip-link" href="#main">Skip to content</a>
 
-<app-site-header [brand]="portfolio.shortName" [github]="portfolio.github" />
+<header class="site-header">
+  <a class="name" href="#top">Oskar Schiedewitz</a>
+  <nav aria-label="Primary navigation">
+    <a href="#work">Work</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a class="social-link" [href]="portfolio.github" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+</header>
 
 <main id="main">
-  <app-hero [portfolio]="portfolio" />
-  <app-selected-work [projects]="portfolio.projects" />
-  <app-experience-tools [portfolio]="portfolio" />
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <h1 id="hero-title">Hello, I am Oskar and <span>I do stuff with tech.</span></h1>
+      <p>I like figuring out how things work, then building something useful with them. These days that means AI, data, and software.</p>
+      <p>Based in Potsdam · Data and AI at HPI · Building at SAP</p>
+      <div class="hero-links">
+        <a href="#work">See selected work</a>
+        <a [href]="'mailto:' + portfolio.email">Email me</a>
+      </div>
+    </div>
+    <figure class="hero-photo">
+      <img src="oskar-coast.jpeg" alt="Oskar by the sea at sunset" width="1600" height="1200" fetchpriority="high" />
+      <figcaption><span>Even on vacation I can catch no sleep 😴</span></figcaption>
+    </figure>
+  </section>
+
+  <section class="work" id="work" aria-labelledby="work-title">
+    <header class="section-header">
+      <h2 id="work-title">Selected work</h2>
+      <p>A few things I’ve built and what I learned along the way.</p>
+    </header>
+
+    @for (project of portfolio.projects; track project.title; let index = $index) {
+      <article class="project">
+        <div class="project-index">
+          <span>0{{ index + 1 }} / {{ project.category }}</span>
+          <span>{{ project.status }}</span>
+        </div>
+
+        <div class="project-demo" [class.assistant-demo-wrap]="project.preview === 'assistant'">
+          @if (project.preview === 'thumbnail') {
+            <div class="detector-demo" aria-label="Illustrative interface showing local AI-likelihood estimates added to a video feed">
+              <header><span>Video feed</span><span><i aria-hidden="true"></i> Local model</span></header>
+              <div class="thumbnail-list">
+                @for (score of detectorScores; track score; let item = $index) {
+                  <div class="thumbnail-row">
+                    <div class="thumbnail-art art-{{ item }}" aria-hidden="true"><i></i><i></i></div>
+                    <div><span></span><span></span></div>
+                    <strong><small>AI estimate</small>{{ score }}</strong>
+                  </div>
+                }
+              </div>
+              <footer>Interface sketch · Browser → localhost → CLIP</footer>
+            </div>
+          } @else {
+            <div class="assistant-demo" aria-label="Example request to the private local assistant">
+              <header><span><i aria-hidden="true"></i> Local assistant</span><span>example session</span></header>
+              <div class="question"><small>You</small><p>What did I save about retrieval?</p></div>
+              <div class="retrieval"><span>Relevant passages retrieved locally</span><code>↳ documents</code></div>
+              <div class="answer"><small>Assistant</small><p>Retrieve relevant document chunks first, then answer with focused, traceable context.</p></div>
+              <footer>Interface sketch · Files and inference stay on this machine.</footer>
+            </div>
+          }
+        </div>
+
+        <div class="project-copy">
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.description }}</p>
+          <div class="project-fact">
+            <strong>{{ index === 0 ? 'Estimate, not verdict.' : 'The laptop is the server.' }}</strong>
+            <span>{{ index === 0 ? 'Inference stays local and uncertainty stays visible.' : 'Retrieval, documents, and inference stay on the host.' }}</span>
+          </div>
+          <ul aria-label="Technology stack">
+            @for (technology of project.technologies; track technology) { <li>{{ technology }}</li> }
+          </ul>
+          @if (project.repositoryUrl) {
+            <a class="project-link" [href]="project.repositoryUrl" target="_blank" rel="noopener noreferrer">View code <span aria-hidden="true">↗</span></a>
+          }
+        </div>
+      </article>
+    }
+  </section>
+
+  <section class="skills" id="skills" aria-labelledby="skills-title">
+    <header class="section-header">
+      <h2 id="skills-title">What I work with</h2>
+      <p>Tools are useful in context, so I group them by the work they help me do.</p>
+    </header>
+
+    <div class="skills-list">
+      @for (group of portfolio.skillGroups; track group.name; let index = $index) {
+        <article>
+          <h3>{{ group.name }}</h3>
+          <p>{{ skillDescriptions[index] }}</p>
+          <p class="skill-names">@for (skill of group.skills; track skill; let last = $last) { <span>{{ skill }}</span>@if (!last) {, } }</p>
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="now" aria-labelledby="now-title">
+    <div class="now-heading"><h2 id="now-title">Right now</h2><p>A quick update</p></div>
+    <div class="now-content"><p>I’m studying <strong>Data and AI at HPI</strong> and working on software and AI engineering at <strong>SAP</strong>.</p><a [href]="portfolio.linkedin" target="_blank" rel="noopener noreferrer">More about my background on LinkedIn <span aria-hidden="true">↗</span></a></div>
+  </section>
+
+  <section class="contact" id="contact" aria-labelledby="contact-title">
+    <div class="contact-copy">
+      <h2 id="contact-title">Want to build something thoughtful?</h2>
+      <p>I’m always happy to talk about applied AI, research, and dependable software.</p>
+      <a [href]="'mailto:' + portfolio.email">{{ portfolio.email }} <span aria-hidden="true">↗</span></a>
+    </div>
+    <figure>
+      <img src="oskar-pipeline-green.jpeg" alt="Oskar smiling and holding up one finger" width="2560" height="1920" loading="lazy" />
+      <figcaption>me when the pipeline is green</figcaption>
+    </figure>
+  </section>
 </main>
 
-<app-contact-footer [portfolio]="portfolio" />
+<footer class="site-footer">
+  <span>© {{ currentYear }} Oskar Schiedewitz</span>
+  <span>{{ portfolio.location }}</span>
+  <nav aria-label="Social links">
+    <a [href]="portfolio.github" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a [href]="portfolio.linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </nav>
+</footer>

@@ -25,17 +25,24 @@
     @if (project().preview === 'thumbnail') {
       <app-thumbnail-detector-demo />
     } @else {
-      <div class="assistant-map" aria-label="Local assistant architecture">
-        <div class="assistant-core">
-          <span>Runs on laptop</span>
-          <strong>Local assistant</strong>
-          <code>POST /ask</code>
+      <div class="assistant-demo" aria-label="Example local assistant conversation">
+        <div class="assistant-demo-head">
+          <span><i aria-hidden="true"></i> Local session</span>
+          <code>model + files on host</code>
         </div>
-        <div class="assistant-capabilities">
-          <div><strong>Private by default</strong><span>Model and files stay on the host</span></div>
-          <div><strong>Available over Wi-Fi</strong><span>Trusted devices call the local API</span></div>
-          <div><strong>Grounded in documents</strong><span>Retrieved passages support each answer</span></div>
+        <div class="message message-user">
+          <small>You · trusted device</small>
+          <p>What did I save about retrieval before generation?</p>
         </div>
+        <div class="retrieval-step">
+          <span>1</span>
+          <div><small>Local retrieval</small><strong>Relevant passages selected from the document index</strong></div>
+        </div>
+        <div class="message message-assistant">
+          <small>Assistant · laptop</small>
+          <p>Retrieve the most relevant document chunks first. Add only those passages to the prompt so the answer stays focused and traceable.</p>
+        </div>
+        <p class="privacy-note"><span aria-hidden="true">✓</span> Request, retrieval, and inference stay on the host.</p>
       </div>
     }
   </div>

@@ -1,5 +1,5 @@
 <section class="hero shell" id="top" aria-labelledby="hero-title">
-  <div class="hero-copy" id="about">
+  <div class="hero-copy">
     <h1 id="hero-title" class="line-mask"><span class="headline-line">AI systems that work<span>.</span></span></h1>
     <p class="intro">I’m Oskar, an AI engineer building useful, local-first software from model to interface.</p>
 
@@ -11,31 +11,45 @@
 
   <aside class="project-stage" aria-label="Project previews">
     <div class="stage-heading">
-      <h2>Small previews. Real systems.</h2>
-      <a href="#work">Open the technical decisions</a>
+      <h2>Proof, not pitch.</h2>
+      <a href="#work">Explore the full projects</a>
     </div>
 
-    <div class="project-loop">
+    <div class="project-selector" aria-label="Choose a project preview">
+      <button type="button" [attr.aria-pressed]="activeProject() === 0" (click)="selectProject(0)">
+        <span>01</span> Thumbnail detector
+      </button>
+      <button type="button" [attr.aria-pressed]="activeProject() === 1" (click)="selectProject(1)">
+        <span>02</span> Local assistant
+      </button>
+    </div>
+
+    <div class="project-preview" aria-live="polite">
+      @if (activeProject() === 0) {
       <article class="project-glimpse glimpse-detector">
         <div class="glimpse-meta"><strong>YouTube AI Thumbnail Detector</strong><span>Browser extension + local ML</span></div>
-        <div class="detector-fragment" aria-label="A crop from the thumbnail detector project">
+        <div class="detector-fragment" aria-label="Four YouTube thumbnails with estimated AI-likelihood scores">
           <img src="youtube-thumbnail-detector.png" alt="YouTube thumbnails used by the local AI detector" width="1709" height="327" />
-          <i class="preview-scan" aria-hidden="true"></i>
+          <div class="hero-scores" aria-label="Example likelihood estimates">
+            <strong><span>AI estimate</span>88%</strong>
+            <strong><span>AI estimate</span>54%</strong>
+            <strong><span>AI estimate</span>67%</strong>
+            <strong><span>AI estimate</span>70%</strong>
+          </div>
         </div>
         <div class="glimpse-footer"><span>CLIP features</span><span>FastAPI</span><code>estimate, not verdict</code></div>
-        <i class="loop-timer" aria-hidden="true"></i>
       </article>
-
+      } @else {
       <article class="project-glimpse glimpse-assistant">
         <div class="glimpse-meta"><strong>Local AI Personal Assistant</strong><span>Private RAG over Wi-Fi</span></div>
-        <div class="assistant-fragment" aria-label="Local assistant request path">
-          <div><small>Trusted device</small><strong>What did I save about RAG?</strong></div>
-          <span aria-hidden="true"><i></i></span>
-          <div><small>Laptop</small><strong>Retrieve docs, then answer</strong><code>POST /ask</code></div>
+        <div class="assistant-conversation" aria-label="Example local assistant conversation">
+          <div class="user-message"><small>You · trusted device</small><strong>What did I save about RAG?</strong></div>
+          <div class="retrieval-trace"><span>Local retrieval</span><strong>Relevant document passages selected</strong><code>POST /ask</code></div>
+          <div class="assistant-message"><small>Assistant · running on laptop</small><p>Retrieve relevant passages first, then answer with focused, traceable context.</p></div>
         </div>
-        <p class="insider-line">It works on my machine. Conveniently, the machine is the server.</p>
-        <i class="loop-timer" aria-hidden="true"></i>
+        <div class="glimpse-footer"><span>Files stay local</span><span>Available over Wi-Fi</span><code>model + data on host</code></div>
       </article>
+      }
     </div>
   </aside>
 </section>
